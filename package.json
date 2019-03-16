@@ -1,0 +1,62 @@
+{
+
+    "name": "app-cn_imapuser",
+
+    "sencha": {
+        "coon-js" : {"packageController" :  true},
+        "namespace": "conjoon.cn_imapuser",
+        "type": "code",
+        "toolkit": "classic",
+        "creator": "The conjoon Project - http://github.com/conjoon",
+        "summary": "Specialized version of a user authenticating against an IMAP server.",
+        "detailedDescription": "Specialized version of a user authenticating against an IMAP server.",
+        "version": "1.0.0",
+        "compatVersion": "1.0.0",
+        "format": "1",
+        "slicer": {
+            "js": [
+                {
+                    "path": "${package.dir}/sass/example/custom.js",
+                    "isWidgetManifest": true
+                }
+            ]
+        },
+        "output": {
+            "base" : "${package.dir}/build",
+            "js" : {
+                "version" : "ES6"
+            }
+        },
+        "compressor": {
+            "polyfills": "none"
+        },
+        "local": true,
+        "theme": "theme-cn_default",
+        "sass" : {
+            "namespace": "",
+            "etc": [
+                "${package.dir}/sass/etc/all.scss"
+            ],
+            "var": [
+                "${package.dir}/sass/var/"
+            ],
+            "src": [
+                "${package.dir}/sass/src/all.scss",
+                "${package.dir}/sass/src/"
+            ]
+        },
+        "classpath": [
+            "${package.dir}/src",
+            "${package.dir}/${toolkit.name}/src"
+        ],
+        "overrides": [
+            "${package.dir}/overrides",
+            "${package.dir}/${toolkit.name}/overrides"
+        ],
+        "example": null,
+        "framework" : "ext",
+        "requires": [
+            "lib-cn_user"
+        ]
+    }
+}

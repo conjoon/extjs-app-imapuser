@@ -1,0 +1,108 @@
+/**
+ * conjoon
+ * app-cn_imapuser
+ * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+ * USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+
+.cn_user-authform {
+
+  border        : 1px solid darken($lightest-color, 10%);
+  border-radius : 6px;
+  background    : white;
+  overflow      : visible!important;
+  @include cn-box-shadow(32px, 32px, 48px, 0, rgba(0,0,0,0.2));
+
+  .x-panel-body-default {
+    background : none;
+    overflow   : visible;
+  }
+
+  .x-box-inner,
+  .x-panel-bodyWrap {
+    overflow : visible;
+  }
+
+  .x-form-text-default {
+    padding : 15px;
+  }
+
+  .trigger-glyph-noop {
+    cursor : default;
+  }
+  .x-form-trigger {
+    text-align : right;
+    width      : 50px;
+  }
+  .auth-email-trigger,
+  .auth-password-trigger {
+    &:before {
+      top       : 10px;
+      left      : -18px;
+      position  : relative;
+      color     : #e5e5e5;
+      font-size : 30px;
+    }
+
+    &.auth-password-trigger:before {
+      content : "\f023";
+    }
+    &.auth-email-trigger:before {
+      content : "\f007";
+    }
+
+  }
+
+  /**
+   * Removes yellowish bg of autofill-fields in webkit browsers
+   */
+  input:-webkit-autofill{
+    box-shadow : 0 0 0px 1000px white inset;
+  }
+
+  .head-label {
+    &.badge {
+      background-color : $base-color;
+      z-index          : 2;
+      border-radius    : 36px;
+      top              : -55px!important;
+      left             : 144px!important;
+      border           : 7px double white;
+      width            : 70px!important;
+      height           : 70px;
+      color            : white;
+      font-size        : 31px;
+      line-height      : 52px;
+      text-align       : center;
+    }
+  }
+
+  .x-btn {
+    .x-btn-icon-el {
+      &:before {
+        right     : 10px;
+        font-size : 24px;
+        position  : absolute;
+      }
+    }
+  }
+}
