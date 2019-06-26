@@ -1,7 +1,7 @@
 /**
- * coon.js
- * lib-cn_user
- * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/coon-js/lib-cn_user
+ * conjoon
+ * app-cn_imapuser
+ * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,30 +24,7 @@
  */
 
 /**
- * This is the package controller of the lib-cn_user package to be used with
- * {@link coon.comp.app.Application}.
- *
- * This controller will hook into the launch-process of {@link coon.comp.app.Application#launch},
- * check if a user is available via {@link coon.user.Manager#getUser} and
- * show {@link coon.user.view.authentication.AuthWindow} to provide
- * an authentication form. The {@link #preLaunchHook} method will return false until
- * a user is available via {@link coon.user.Manager}.
- *
- *      @example
- *      Ext.define('coon.Application', {
- *
- *          extend : 'coon.comp.app.Application',
- *
- *          mainView : 'Ext.Panel',
- *
- *          // If specifying the PackageController in the requires-property of the app.json of the
- *          // application which uses this package, you can omit the this.
- *          controllers : [
- *              'coon.user.app.PackageController'
- *          ]
- *
- *      });
- *
+ * Override to make sure this PackageController is recognized by an application if requested.
  *
  */
 Ext.define('conjoon.cn_imapuser.app.PackageController', {
