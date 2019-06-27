@@ -97,11 +97,20 @@
   }
 
   .x-btn {
-    .x-btn-icon-el {
+      .x-btn-icon-el.fa-spinner,
+      .x-btn-icon-el.fa-angle-right {
       &:before {
         right     : 10px;
         font-size : 24px;
         position  : absolute;
+      }
+    }
+  }
+
+  .x-btn {
+    .x-btn-icon-el.fa-spinner {
+      &:before {
+        right : 0px;
       }
     }
   }
