@@ -69,6 +69,13 @@ Ext.define('conjoon.cn_imapuser.overrides.cn_user.view.authentication.AuthForm',
             iconAlign : 'right'
         });
 
+        Ext.apply(me.items[4], {
+            /**
+             * @i18n
+             */
+            text : "Authentication against the list of valid IMAP servers failed. Please try again or use a different Email-Address."
+        });
+
         me.callParent(arguments);
     }
 
