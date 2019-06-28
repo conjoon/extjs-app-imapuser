@@ -23,30 +23,46 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
- * Override to make sure this PackageController is recognized by an application if requested.
- * Additionally, this PackageController implements {coon.user.app.PackageController#userWasNotAuthorized}
- * to make sure any existing {coon.user.view.authentication.AuthForm#showAuthorizationFailed} is called.
- */
-Ext.define('conjoon.cn_imapuser.app.PackageController', {
-
-    extend : 'coon.user.app.PackageController',
-
-    /**
-     * @inheritdoc
-     */
-    userWasNotAuthorized : function() {
-
-        const me = this,
-            authWindow = me.authWindow;
-
-        if (!authWindow) {
-            return;
-        }
-
-        authWindow.down('cn_user-authform').showAuthorizationFailed(true);
+describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
 
 
-    }
+    t.it("constructor", function(t) {
+
+        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+
+        t.isInstanceOf(ctrl, 'coon.user.app.PackageController');
+
+    });
+
+
+    t.it("userWasNotAuthorized()", function(t) {
+
+        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+
+        let SHOW = null;
+
+        ctrl.authWindow = {
+
+            down : function() {
+                return {
+                    showAuthorizationFailed : function(v) {
+                        SHOW = v;
+                    }
+                }
+            }
+        };
+
+        ctrl.userWasNotAuthorized();
+        t.expect(SHOW).toBe(true);
+
+        SHOW = null;
+
+        delete ctrl.authWindow;
+
+        ctrl.userWasNotAuthorized();
+        t.expect(SHOW).toBe(null);
+
+    });
+
 
 });
