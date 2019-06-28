@@ -56,7 +56,8 @@
         "example": null,
         "framework" : "ext",
         "requires": [
-            "lib-cn_user"
+            "lib-cn_user",
+            "app-cn_mail"
         ]
     }
 }

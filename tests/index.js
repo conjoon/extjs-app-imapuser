@@ -8,12 +8,18 @@ harness.configure({
         /**
          * ux
          */
-        'Ext.ux' : "../../../../ext/packages/ux/src/",////bryntum.com/examples/extjs-6.0.1/build/ext-all.js"
+        'Ext.ux' : "../../../../ext/packages/ux/src/",
 
         /**
          * Universal
          */
         'conjoon.cn_imapuser'      : '../src',
+
+        /**
+         * Overrides
+         */
+        'conjoon.cn_imapuser.overrides.conjoon'      : '../overrides/conjoon',
+
 
         /**
          * Classic
@@ -22,6 +28,9 @@ harness.configure({
         /**
          * Requirements
          */
+
+        'conjoon.cn_mail' : '../../app-cn_mail/src/',
+
         'coon.user'   : '../../lib-cn_user/src/',
         'coon.user.view'   : '../../lib-cn_user/classic/src/view',
 
@@ -38,6 +47,23 @@ harness.configure({
 });
 
 harness.start({
+    group : 'overrides',
+    items : [{
+        group : 'conjoon',
+        items : [{
+            group : 'cn_mail',
+            items : [{
+                group : 'data',
+                items : [{
+                    group : 'mail',
+                    items : [
+                        'overrides/conjoon/cn_mail/data/mail/BaseSchemaTest.js'
+                    ]
+                }]
+            }]
+        }]
+    }]
+}, {
     group : 'universal',
     items : [{
         group : 'app',
