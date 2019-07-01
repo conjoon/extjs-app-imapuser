@@ -65,4 +65,16 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
     });
 
 
+    t.it("init()", function(t) {
+
+        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+
+        t.expect(coon.user.Manager.getUserProvider() instanceof conjoon.cn_imapuser.UserProvider).toBe(false);
+
+        ctrl.init();
+
+        t.isInstanceOf(coon.user.Manager.getUserProvider(), 'conjoon.cn_imapuser.UserProvider');
+
+    });
+
 });

@@ -32,6 +32,24 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
 
     extend : 'coon.user.app.PackageController',
 
+    requires : [
+        'coon.user.Manager',
+        'conjoon.cn_imapuser.UserProvider'
+    ],
+
+
+    /**
+     * @inheritdoc
+     */
+    init : function() {
+
+        coon.user.Manager.setUserProvider(
+            Ext.create('conjoon.cn_imapuser.UserProvider')
+        );
+
+    },
+
+
     /**
      * @inheritdoc
      */

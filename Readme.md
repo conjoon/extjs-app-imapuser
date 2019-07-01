@@ -20,3 +20,4 @@ Class `conjoon.cn_imapuser.view.authentication.AuthWindow` has the alias `widget
  * This package requires the [lib-cn_user](https://github.com/coon-js/lib-cn_user) package of the [coon.js](https://github.com/coon-js) project.
  * This package requires the [theme-cn_default](https://github.com/conjoon/theme-cn_default) package of the [conjoon](https://github.com/conjoon) project.
 
+When using this package without a backend implementation, make sure your app uses the [dev-cn_imapusersim](https://github.com/conjoon/dev-cn_imapusersim) package  of the [conjoon](https://github.com/conjoon) project.

@@ -36,7 +36,9 @@ harness.configure({
 
         'coon.core'   : '../../lib-cn_core/src/',
 
-        'coon.comp'   : '../../lib-cn_comp/classic/src'
+        'coon.comp'   : '../../lib-cn_comp/classic/src',
+
+        'conjoon.dev.cn_imapusersim'   : '../../dev-cn_imapusersim/src'
 
     },
     preload        : [
@@ -65,7 +67,8 @@ harness.start({
     }]
 }, {
     group : 'universal',
-    items : [{
+    items : [
+        'src/UserProviderTest.js', {
         group : 'app',
         items : [
             'src/app/PackageControllerTest.js'
