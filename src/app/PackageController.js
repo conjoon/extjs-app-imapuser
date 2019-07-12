@@ -49,6 +49,66 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
 
     },
 
+    /**
+     * Shows the {@link coon.user.view.authentication.AuthWindow} if no
+     * user is available via {@link coon.user.Manager#getUser}, and returns
+     * false. Returns true otherwise.
+     *
+     *@inheritdoc
+     */
+    preLaunchHook : function(app) {
+
+        const me = this,
+              username = Ext.util.Cookies.get("cn_imapuser-username"),
+              password = Ext.util.Cookies.get("cn_imapuser-password");
+
+        if (coon.user.Manager.getUser()) {
+            return true;
+        }
+
+        if (username && password) {
+            coon.user.Manager.loadUser({
+                params  : {
+                    userid : username,
+                    password : password
+                },
+                success : me.onUserLoadSuccess,
+                failure : me.onUserLoadFailure,
+                scope   : me
+            });
+
+            return false;
+        }
+        if (!coon.user.Manager.getUser()) {
+            this.createAuthWindow();
+            return false;
+        }
+
+
+        return true;
+    },
+
+
+    /**
+     * @inheritdoc
+     */
+    userAvailable : function(userModel) {
+
+        const me = this;
+
+        if (me.authWindow) {
+            if (me.authWindow.down('#cn_imapuser_rememberMe').getValue()) {
+                Ext.util.Cookies.set("cn_imapuser-username", userModel.get('username'), null, "", "");
+                Ext.util.Cookies.set("cn_imapuser-password", userModel.get('password'), null, "", "");
+            } else {
+                Ext.util.Cookies.clear("cn_imapuser-username");
+                Ext.util.Cookies.clear("cn_imapuser-password");
+            }
+        }
+
+        return me.callParent(arguments);
+    },
+
 
     /**
      * @inheritdoc
@@ -63,8 +123,27 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
         }
 
         authWindow.down('cn_user-authform').showAuthorizationFailed(true);
+    },
 
 
+    privates : {
+
+        /**
+         * @inheritdoc
+         */
+        onUserLoadFailure : function(options) {
+            const me = this,
+                authWindow = me.authWindow;
+
+            Ext.util.Cookies.clear("cn_imapuser-username"),
+            Ext.util.Cookies.clear("cn_imapuser-password");
+
+            if (!authWindow) {
+                this.createAuthWindow();
+            }
+
+            return me.callParent(arguments);
+        }
     }
 
 });

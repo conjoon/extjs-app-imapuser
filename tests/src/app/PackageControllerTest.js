@@ -77,4 +77,123 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
 
     });
 
+
+    t.it("userAvailable()", function(t) {
+
+        let COOKIES = {};
+        const tmp = Ext.util.Cookies.set;
+        const tmp2 = Ext.util.Cookies.clear;
+
+        Ext.util.Cookies.clear = function() {
+            COOKIES = {};
+        }
+        Ext.util.Cookies.set = function(prop, val) {
+            COOKIES[prop] = val;
+        }
+        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+
+        let ID;
+        let REMEMBERME = true;
+        ctrl.authWindow = {
+            down : function(prop) {
+                ID = prop;
+
+                return {
+                    getValue : function() {
+                        return REMEMBERME;
+                    }
+                }
+            }
+        };
+
+        var INFO = {};
+
+        ctrl.callParent = function(args) {};
+
+        ctrl.userAvailable({get : function(prop) {return prop;}});
+
+        t.expect(COOKIES).toEqual({"cn_imapuser-username" : "username", "cn_imapuser-password" : "password"});
+        t.expect(ID).toBe("#cn_imapuser_rememberMe");
+
+        REMEMBERME = false;
+        ctrl.userAvailable({get : function(prop) {return prop;}});
+        t.expect(COOKIES).toEqual({});
+
+        Ext.util.Cookies.set = tmp;
+        Ext.util.Cookies.clear = tmp2;
+    });
+
+
+    t.it("onUserLoadFailure()", function(t) {
+
+        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+
+        ctrl.authWindow = null;
+
+        var CREATED = false;
+
+        ctrl.createAuthWindow = function() {
+            CREATED = true;
+        };
+        ctrl.callParent = function() {};
+        var CLEARED = [];
+        var tmp = Ext.util.Cookies.clear;
+        Ext.util.Cookies.clear = function(cookieName) {
+            CLEARED.push(cookieName)
+        };
+
+        ctrl.onUserLoadFailure();
+
+        t.expect(CREATED).toBe(true);
+        t.expect(CLEARED).toEqual([
+            "cn_imapuser-username",
+            "cn_imapuser-password"
+        ])
+
+        Ext.util.Cookies.clear = tmp;
+    });
+
+
+    t.it("preLaunchHook()", function(t) {
+
+        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+
+        var tmp = Ext.util.Cookies.get;
+
+        Ext.util.Cookies.get = function(prop) {
+            return prop;
+        }
+
+        let USER = {};
+        coon.user.Manager.getUser = function() {
+            return USER;
+        }
+
+        t.expect(ctrl.preLaunchHook()).toBe(true);
+
+        USER = null;
+        let OPTIONS = {};
+        coon.user.Manager.loadUser = function(options) {
+            OPTIONS = options;
+        }
+        t.expect(ctrl.preLaunchHook()).toBe(false);
+        t.expect(OPTIONS.params.userid).toBe("cn_imapuser-username");
+        t.expect(OPTIONS.params.password).toBe("cn_imapuser-password");
+
+        Ext.util.Cookies.get = function(prop) {
+            return undefined;
+        }
+
+        let CREATED = false;
+        ctrl.createAuthWindow = function() {
+            CREATED = true;
+        }
+        t.expect(ctrl.preLaunchHook()).toBe(false);
+        t.expect(CREATED).toBe(true);
+
+        Ext.util.Cookies.get = tmp;
+    });
+
+   
+
 });

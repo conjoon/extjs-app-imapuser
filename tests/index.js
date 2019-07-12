@@ -20,6 +20,7 @@ harness.configure({
          */
         'conjoon.cn_imapuser.overrides.conjoon'      : '../overrides/conjoon',
 
+        'conjoon.cn_imapuser.overrides.coon.user.view' : '../classic/overrides/coon/user/view',
 
         /**
          * Classic
@@ -51,6 +52,20 @@ harness.configure({
 harness.start({
     group : 'overrides',
     items : [{
+        group : 'coon',
+        items : [{
+            group : 'user',
+            items : [{
+                group : 'view',
+                items : [{
+                    group : 'authentication',
+                    items : [
+                        'overrides/coon/user/view/authentication/AuthFormTest.js'
+                    ]
+                }]
+            }]
+        }]
+    },{
         group : 'conjoon',
         items : [{
             group : 'cn_mail',

@@ -23,56 +23,25 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
- * @inheritdoc
- */
-Ext.define('conjoon.cn_imapuser.overrides.cn_user.view.authentication.AuthWindow', {
-
-    override: 'coon.user.view.authentication.AuthWindow',
-
-    header : false,
-
-    bodyCls: 'x-fa cn_user-authwindow',
+describe('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthFormTest', function(t) {
 
 
-    layout : {
-        type  : 'vbox',
-        align : 'stretch'
-    },
+    t.requireOk('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm', function () {
+
+        t.it("Should render AuthForm properly", function(t) {
+
+            const authForm = Ext.create("coon.user.view.authentication.AuthForm", {
+                renderTo : document.body
+            });
 
 
-    /**
-     * @inheritdoc
-     */
-    initComponent : function() {
+            t.expect(authForm.down('#cn_imapuser_rememberMe')).toBeTruthy()
 
-        var me = this;
 
-        me.items = [{
-            xtype  : 'container',
-            flex   : 1,
-            layout : {
-                type  : 'vbox',
-                align : 'center',
-                pack  : 'center'
-            },
-            items : [
-                me.items[0]
-            ]
-        }, {
-            xtype : 'box',
-            height : 80,
-            cls   : 'copyrights',
-            html  : '<div class="cont">' +
-                '<div class="prod">conjoon</div>' +
-                '<div class="meta">' +
-                '<span><a target="_blank" href="http://conjoon.org">About</a></span>' +
-                '<span>&#169; 2007-2019 conjoon Open Source Project</span>' +
-                '</div>' +
-                '</div>'
-        }];
 
-        me.callParent(arguments);
-    }
+        });
+
+
+    });
 
 });

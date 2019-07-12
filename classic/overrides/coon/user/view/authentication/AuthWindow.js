@@ -23,62 +23,56 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-
 /**
- * Custom styles for the AuthForm.
+ * @inheritdoc
  */
-Ext.define('conjoon.cn_imapuser.overrides.cn_user.view.authentication.AuthForm', {
+Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthWindow', {
 
-    override: 'coon.user.view.authentication.AuthForm',
+    override: 'coon.user.view.authentication.AuthWindow',
+
+    header : false,
+
+    bodyCls: 'x-fa cn_user-authwindow',
 
 
+    layout : {
+        type  : 'vbox',
+        align : 'stretch'
+    },
+
+
+    /**
+     * @inheritdoc
+     */
     initComponent : function() {
 
         var me = this;
 
-        Ext.apply(me.items[0], {
-            cls    : 'x-fa fa-envelope badge head-label',
-            text   : undefined,
-            margin : '-40 0 0 0'
-        });
-
-        Ext.apply(me.items[1], {
-            height    : 55,
-            hideLabel : true,
-            triggers  : {
-                glyphed  : {
-                    cls : 'trigger-glyph-noop auth-email-trigger'
-                }
+        me.items = [{
+            xtype  : 'container',
+            flex   : 1,
+            layout : {
+                type  : 'vbox',
+                align : 'center',
+                pack  : 'center'
             },
-            emptyText : 'email-address'
-        });
-
-        Ext.apply(me.items[2], {
-            height    : 55,
-            hideLabel : true,
-            triggers  : {
-                glyphed  : {
-                    cls : 'trigger-glyph-noop auth-password-trigger'
-                }
-            }
-        });
-
-        Ext.apply(me.items[3], {
-            ui        : 'cn-btn-xl-soft-darkblue',
-            scale     : 'large',
-            iconAlign : 'right'
-        });
-
-        Ext.apply(me.items[4], {
-            /**
-             * @i18n
-             */
-            text : "Authentication against the list of valid IMAP servers failed. Please try again or use a different Email-Address."
-        });
+            items : [
+                me.items[0]
+            ]
+        }, {
+            xtype : 'box',
+            height : 80,
+            cls   : 'copyrights',
+            html  : '<div class="cont">' +
+                '<div class="prod">conjoon</div>' +
+                '<div class="meta">' +
+                '<span><a target="_blank" href="http://conjoon.org">About</a></span>' +
+                '<span>&#169; 2007-2019 conjoon Open Source Project</span>' +
+                '</div>' +
+                '</div>'
+        }];
 
         me.callParent(arguments);
     }
 
 });
-
-
