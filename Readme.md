@@ -29,10 +29,10 @@ A simplistic RESTful PHP backend that can be used with single sign-ons to existi
 Any developer striving for an own backend implementation should make sure to provide the following services:
 
  * `cn_imapuser/auth` | **POST** 
- * **Parameters:**  
-      * `{username}` (required): The username of the IMAP Account for which the user should be authenticated;
-      * `{password}` (required): The password of this user;
-    * Authenticates a user with the specified `username` and `password`. If successful, `app-cn_imapuser` will make sure that the current user is a valid user for the lifetime of the application.   
-    * Success Status / Response: Status 200 `{success :  true, data : {...}]` The response should return the user's data
-    * Failure Status / Response: Status 401 `{success : false}`
+   * **Parameters:**  
+     * `{username}` (required): The username of the IMAP Account for which the user should be authenticated;
+     * `{password}` (required): The password of this user;
+   * Authenticates a user with the specified `username` and `password`. If successful, `app-cn_imapuser` will make sure that the current user is a valid user for the lifetime of the application.   
+   * Success Status / Response: Status 200 `{success :  true, data : {...}]` The response should return the user's data
+   * Failure Status / Response: Status 401 `{success : false}`
 
