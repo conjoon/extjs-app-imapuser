@@ -38,6 +38,14 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
     ],
 
 
+    control : {
+
+        'cn_navport-tbar #cn_imapuser-logoutBtn' : {
+            click : 'onLogoutButtonClick'
+        }
+    },
+
+
     /**
      * @inheritdoc
      */
@@ -49,6 +57,7 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
 
     },
 
+
     /**
      * Shows the {@link coon.user.view.authentication.AuthWindow} if no
      * user is available via {@link coon.user.Manager#getUser}, and returns
@@ -59,8 +68,9 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
     preLaunchHook : function(app) {
 
         const me = this,
-              username = Ext.util.Cookies.get("cn_imapuser-username"),
-              password = Ext.util.Cookies.get("cn_imapuser-password");
+              cookies = me.getCookies(),
+              username = cookies.username,
+              password = cookies.password;
 
         if (coon.user.Manager.getUser()) {
             return true;
@@ -92,17 +102,40 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
     /**
      * @inheritdoc
      */
+    postLaunchHook : function() {
+
+        const me = this,
+              permaNav = me.callParent(arguments),
+              user = coon.user.Manager.getUser();
+
+
+        permaNav.permaNav[0] = {
+            xtype : 'button',
+            text  : user.get('username'),
+            menu  : [{
+                /**
+                 * @i18n
+                 */
+                text : 'Logout',
+                itemId : 'cn_imapuser-logoutBtn'
+            }]
+        };
+
+        return permaNav;
+    },
+
+    /**
+     * @inheritdoc
+     */
     userAvailable : function(userModel) {
 
         const me = this;
 
         if (me.authWindow) {
             if (me.authWindow.down('#cn_imapuser_rememberMe').getValue()) {
-                Ext.util.Cookies.set("cn_imapuser-username", userModel.get('username'), null, "", "");
-                Ext.util.Cookies.set("cn_imapuser-password", userModel.get('password'), null, "", "");
+                this.setCookies(userModel.get('username'), userModel.get('password'));
             } else {
-                Ext.util.Cookies.clear("cn_imapuser-username");
-                Ext.util.Cookies.clear("cn_imapuser-password");
+                this.setCookies(null);
             }
         }
 
@@ -135,15 +168,84 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
             const me = this,
                 authWindow = me.authWindow;
 
-            Ext.util.Cookies.clear("cn_imapuser-username"),
-            Ext.util.Cookies.clear("cn_imapuser-password");
+            this.setCookies(null);
 
             if (!authWindow) {
                 this.createAuthWindow();
             }
 
             return me.callParent(arguments);
+        },
+
+
+        /**
+         * Callback for logout button of the user menu in the permanav.
+         *
+         * @param btn
+         */
+        onLogoutButtonClick : function(btn) {
+
+            this.setCookies(null);
+
+            window.location.reload();
+        },
+
+
+        /**
+         * Sets the cookies for an user, or clears available cookies based on the
+         * specified arguments.
+         * Available cookies are cleared if this method is called with null as its
+         * only argument.
+         * If cookies are created, the default lifetime is 24 hrs for these cookies.
+         *
+         * @example
+         *   this.setCookies(null) // clears cookies
+         *   this.setCookies("foo", "bar"); // saves user "foo" with password "bar" in its
+         *   cookies.
+         *
+         * @param {String} username
+         * @param {String} password
+         *
+         * @return null if cookies have been cleard, otherwise an object containing
+         * username/password key-value pairs
+         */
+        setCookies : function(username, password) {
+
+            if (arguments.length === 1 && username === null) {
+                Ext.util.Cookies.clear("cn_imapuser-username", "./");
+                Ext.util.Cookies.clear("cn_imapuser-password", "./");
+
+                return null;
+            }
+
+            let expires = new Date(Date.now() + ((60 * 60 * 24) * 1000));
+
+            Ext.util.Cookies.set("cn_imapuser-username", username, expires,  "./");
+            Ext.util.Cookies.set("cn_imapuser-password", password, expires,  "./");
+
+            return {
+                username : username,
+                password : password
+            };
+        },
+
+        /**
+         * Returns the values of the cookies for this user's authentication in an object
+         * keyed with username/password.
+         *
+         * @return {{password: *, username: *}}
+         */
+        getCookies : function() {
+
+            return {
+                username: Ext.util.Cookies.get("cn_imapuser-username"),
+                password: Ext.util.Cookies.get("cn_imapuser-password")
+            };
         }
+
     }
+
+
+
 
 });
