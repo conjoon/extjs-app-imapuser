@@ -29,14 +29,19 @@ harness.configure({
         /**
          * Requirements
          */
+        'coon.user.view.authentication.AuthWindow'   : '../../lib-cn_user/src/view/authentication/AuthWindow.js',
 
         'conjoon.cn_mail' : '../../app-cn_mail/src/',
 
         'coon.user'   : '../../lib-cn_user/src/',
         'coon.user.view'   : '../../lib-cn_user/classic/src/view',
 
+        'coon.user.view.toolbar'   : '../../lib-cn_user/src/view/toolbar',
+
         'coon.core'   : '../../lib-cn_core/src/',
 
+        'coon.comp.window'   : '../../lib-cn_comp/src/window',
+        'coon.comp.toolbar'   : '../../lib-cn_comp/src/toolbar',
         'coon.comp'   : '../../lib-cn_comp/classic/src',
 
         'conjoon.dev.cn_imapusersim'   : '../../dev-cn_imapusersim/src'
