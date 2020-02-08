@@ -3,7 +3,7 @@
     "name": "app-cn_imapuser",
 
     "sencha": {
-        "coon-js" : {"packageController" :  true},
+        "coon-js" : {"package" : {"controller" :  true}},
         "namespace": "conjoon.cn_imapuser",
         "type": "code",
         "toolkit": "classic",
