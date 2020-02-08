@@ -77,6 +77,20 @@ harness.start({
                         'overrides/conjoon/cn_mail/data/mail/BaseSchemaTest.js'
                     ]
                 }]
+            }, {
+                group : 'view',
+                items : [{
+                    group : 'mail',
+                    items : [{
+                        group : 'message',
+                        items : [{
+                            group : 'editor',
+                            items : [
+                                'overrides/conjoon/cn_mail/view/mail/message/editor/MessageEditorViewControllerTest.js'
+                            ]
+                        }]
+                    }]
+                }]
             }]
         }]
     }]
