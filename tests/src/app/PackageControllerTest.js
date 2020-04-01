@@ -1,7 +1,7 @@
 /**
  * conjoon
  * app-cn_imapuser
- * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ *  Copyright (C) 2017 - 2020 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -269,14 +269,8 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
 
         let permaNav = ctrl.postLaunchHook();
 
-        t.expect(permaNav.permaNav[0]).toEqual({
-            xtype : 'button',
-            text  : "foobar",
-            menu  : [{
-                text : 'Logout',
-                itemId : 'cn_imapuser-logoutBtn'
-            }]
-        });
+        t.expect(permaNav.permaNav[0].xtype).toBe("button");
+        t.expect(permaNav.permaNav[0].menu).toBeDefined();
 
     });
 
