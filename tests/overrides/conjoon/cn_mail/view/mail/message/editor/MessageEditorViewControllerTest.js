@@ -23,12 +23,12 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe('conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewControllerTest', function(t) {
+describe("conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewControllerTest", function (t) {
 
 
-    t.requireOk('conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController', function () {
+    t.requireOk("conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController", function () {
 
-        t.it("getSendMessageDraftRequestConfig()", function(t) {
+        t.it("getSendMessageDraftRequestConfig()", function (t) {
 
             const ctrl = Ext.create("conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController");
 
@@ -54,8 +54,7 @@ describe('conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor
                 headers : {
                     Authorization: "Basic " + coon.user.Util.userToCredentials(provider.user, coon.user.Util.BASIC_AUTH)
                 }
-            })
-
+            });
 
 
         });

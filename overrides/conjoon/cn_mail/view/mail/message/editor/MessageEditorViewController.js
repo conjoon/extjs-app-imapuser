@@ -26,13 +26,13 @@
 /**
  * @inheritdoc
  */
-Ext.define('conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController', {
+Ext.define("conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController", {
 
-    override: 'conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController',
+    override: "conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController",
 
     requires : [
-        'coon.user.Util',
-        'coon.user.Manager'
+        "coon.user.Util",
+        "coon.user.Manager"
     ],
 
     privates : {
@@ -40,10 +40,10 @@ Ext.define('conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.edit
         /**
          * @inheritdoc
          */
-        getSendMessageDraftRequestConfig : function(messageDraft) {
+        getSendMessageDraftRequestConfig : function (messageDraft) {
 
             const me = this,
-                  cfg = me.callParent(arguments);
+                cfg = me.callParent(arguments);
 
             cfg.headers = {
                 Authorization : "Basic " + coon.user.Util.userToCredentials(

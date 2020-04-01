@@ -30,12 +30,12 @@
  * a "password" property.
  *
  */
-Ext.define('conjoon.cn_imapuser.UserProvider', {
+Ext.define("conjoon.cn_imapuser.UserProvider", {
 
-    extend : 'coon.user.DefaultUserProvider',
+    extend : "coon.user.DefaultUserProvider",
 
     requires : [
-        'coon.user.model.UserModel'
+        "coon.user.model.UserModel"
     ],
 
 
@@ -49,11 +49,13 @@ Ext.define('conjoon.cn_imapuser.UserProvider', {
      * @throws if options is not an object or if userid/password are missing in the object
      * as properties
      */
-    loadUser : function(options) {
+    loadUser : function (options) {
 
         const me = this;
 
-        if (!Ext.isObject(options) || !options.hasOwnProperty('userid') || !options.hasOwnProperty('password')) {
+        if (!Ext.isObject(options) ||
+            !Object.prototype.hasOwnProperty.call(options,"userid") ||
+            !Object.prototype.hasOwnProperty.call(options,"password")) {
             Ext.raise({
                 msg : "\"options\" must be an object with the properties \"userid\" and \"password\" defined",
                 options : options
@@ -63,14 +65,14 @@ Ext.define('conjoon.cn_imapuser.UserProvider', {
         me.isLoading = true;
 
         Ext.Ajax.request({
-            url : './cn_imapuser/auth',
+            url : "./cn_imapuser/auth",
             params : {
                 username : options.userid,
                 password : options.password
             },
-            method : 'POST',
+            method : "POST",
             success : me.onUserLoad,
-            failure : function(response) {
+            failure : function (response) {
                 me.onUserLoadFailure(response, options);
             },
             scope : me
@@ -83,14 +85,14 @@ Ext.define('conjoon.cn_imapuser.UserProvider', {
      *
      * @param {Object} response
      */
-    onUserLoad : function(response) {
+    onUserLoad : function (response) {
 
         const me = this,
-              data = Ext.decode(response.responseText);
+            data = Ext.decode(response.responseText);
 
-        me.user = Ext.create('coon.user.model.UserModel', data.data);
+        me.user = Ext.create("coon.user.model.UserModel", data.data);
 
-        me.fireEvent('cn_user-userload', me, me.user);
+        me.fireEvent("cn_user-userload", me, me.user);
         me.isLoading = false;
     },
 
@@ -100,12 +102,12 @@ Ext.define('conjoon.cn_imapuser.UserProvider', {
      *
      * @param {Object} response
      */
-    onUserLoadFailure : function(response, options) {
+    onUserLoadFailure : function (response, options) {
 
         const me = this;
 
         me.user = null;
-        me.fireEvent('cn_user-userloadfailure', me, options);
+        me.fireEvent("cn_user-userloadfailure", me, options);
         me.isLoading = false;
 
     }

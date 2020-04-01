@@ -27,19 +27,19 @@
 /**
  * Custom styles for the AuthForm.
  */
-Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm', {
+Ext.define("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", {
 
-    override: 'coon.user.view.authentication.AuthForm',
+    override: "coon.user.view.authentication.AuthForm",
 
 
-    initComponent : function() {
+    initComponent : function () {
 
         var me = this;
 
         Ext.apply(me.items[0], {
-            cls    : 'fas fa-envelope badge head-label',
+            cls    : "fas fa-envelope badge head-label",
             text   : undefined,
-            margin : '-40 0 0 0'
+            margin : "-40 0 0 0"
         });
 
         Ext.apply(me.items[1], {
@@ -47,10 +47,10 @@ Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm
             hideLabel : true,
             triggers  : {
                 glyphed  : {
-                    cls : 'trigger-glyph-noop auth-email-trigger'
+                    cls : "trigger-glyph-noop auth-email-trigger"
                 }
             },
-            emptyText : 'email-address'
+            emptyText : "email-address"
         });
 
         Ext.apply(me.items[2], {
@@ -58,15 +58,15 @@ Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm
             hideLabel : true,
             triggers  : {
                 glyphed  : {
-                    cls : 'trigger-glyph-noop auth-password-trigger'
+                    cls : "trigger-glyph-noop auth-password-trigger"
                 }
             }
         });
 
 
         Ext.apply(me.items[3], {
-            scale     : 'large',
-            iconAlign : 'right'
+            scale     : "large",
+            iconAlign : "right"
         });
 
         Ext.apply(me.items[4], {
@@ -77,13 +77,13 @@ Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm
         });
 
         me.items.splice(4, 0, {
-            margin : '12 0 0 0',
-            itemId : 'cn_imapuser_rememberMe',
-            xtype : 'checkbox',
+            margin : "12 0 0 0",
+            itemId : "cn_imapuser_rememberMe",
+            xtype : "checkbox",
             /**
              * @i18n
              */
-            boxLabel  : 'Remember my login on this computer'
+            boxLabel  : "Remember my login on this computer"
         });
 
 

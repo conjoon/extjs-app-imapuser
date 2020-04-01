@@ -26,13 +26,13 @@
 /**
  * @inheritdoc
  */
-Ext.define('conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema', {
+Ext.define("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema", {
 
-    override: 'conjoon.cn_mail.data.mail.BaseSchema',
+    override: "conjoon.cn_mail.data.mail.BaseSchema",
 
     requires : [
-        'coon.user.Util',
-        'coon.user.Manager'
+        "coon.user.Util",
+        "coon.user.Manager"
     ],
 
     privates : {
@@ -43,7 +43,7 @@ Ext.define('conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema',
         constructProxy: function () {
 
             const me = this,
-                 proxy = me.callParent(arguments);
+                proxy = me.callParent(arguments);
 
 
             proxy.headers = {

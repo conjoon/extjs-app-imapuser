@@ -1,26 +1,26 @@
 var harness = new Siesta.Harness.Browser.ExtJS();
 
 harness.configure({
-    title          : 'app-cn_imapuser',
+    title          : "app-cn_imapuser",
     disableCaching : true,
     loaderPath     : {
 
         /**
          * ux
          */
-        'Ext.ux' : "../../../../ext/packages/ux/src/",
+        "Ext.ux" : "../../../../ext/packages/ux/src/",
 
         /**
          * Universal
          */
-        'conjoon.cn_imapuser'      : '../src',
+        "conjoon.cn_imapuser"      : "../src",
 
         /**
          * Overrides
          */
-        'conjoon.cn_imapuser.overrides.conjoon'      : '../overrides/conjoon',
+        "conjoon.cn_imapuser.overrides.conjoon"      : "../overrides/conjoon",
 
-        'conjoon.cn_imapuser.overrides.coon.user.view' : '../classic/overrides/coon/user/view',
+        "conjoon.cn_imapuser.overrides.coon.user.view" : "../classic/overrides/coon/user/view",
 
         /**
          * Classic
@@ -29,22 +29,22 @@ harness.configure({
         /**
          * Requirements
          */
-        'coon.user.view.authentication.AuthWindow'   : '../../lib-cn_user/src/view/authentication/AuthWindow.js',
+        "coon.user.view.authentication.AuthWindow"   : "../../lib-cn_user/src/view/authentication/AuthWindow.js",
 
-        'conjoon.cn_mail' : '../../app-cn_mail/src/',
+        "conjoon.cn_mail" : "../../app-cn_mail/src/",
 
-        'coon.user'   : '../../lib-cn_user/src/',
-        'coon.user.view'   : '../../lib-cn_user/classic/src/view',
+        "coon.user"   : "../../lib-cn_user/src/",
+        "coon.user.view"   : "../../lib-cn_user/classic/src/view",
 
-        'coon.user.view.toolbar'   : '../../lib-cn_user/src/view/toolbar',
+        "coon.user.view.toolbar"   : "../../lib-cn_user/src/view/toolbar",
 
-        'coon.core'   : '../../lib-cn_core/src/',
+        "coon.core"   : "../../lib-cn_core/src/",
 
-        'coon.comp.window'   : '../../lib-cn_comp/src/window',
-        'coon.comp.toolbar'   : '../../lib-cn_comp/src/toolbar',
-        'coon.comp'   : '../../lib-cn_comp/classic/src',
+        "coon.comp.window"   : "../../lib-cn_comp/src/window",
+        "coon.comp.toolbar"   : "../../lib-cn_comp/src/toolbar",
+        "coon.comp"   : "../../lib-cn_comp/classic/src",
 
-        'conjoon.dev.cn_imapusersim'   : '../../dev-cn_imapusersim/src'
+        "conjoon.dev.cn_imapusersim"   : "../../dev-cn_imapusersim/src"
 
     },
     preload        : [
@@ -55,43 +55,43 @@ harness.configure({
 });
 
 harness.start({
-    group : 'overrides',
+    group : "overrides",
     items : [{
-        group : 'coon',
+        group : "coon",
         items : [{
-            group : 'user',
+            group : "user",
             items : [{
-                group : 'view',
+                group : "view",
                 items : [{
-                    group : 'authentication',
+                    group : "authentication",
                     items : [
-                        'overrides/coon/user/view/authentication/AuthFormTest.js'
+                        "overrides/coon/user/view/authentication/AuthFormTest.js"
                     ]
                 }]
             }]
         }]
     },{
-        group : 'conjoon',
+        group : "conjoon",
         items : [{
-            group : 'cn_mail',
+            group : "cn_mail",
             items : [{
-                group : 'data',
+                group : "data",
                 items : [{
-                    group : 'mail',
+                    group : "mail",
                     items : [
-                        'overrides/conjoon/cn_mail/data/mail/BaseSchemaTest.js'
+                        "overrides/conjoon/cn_mail/data/mail/BaseSchemaTest.js"
                     ]
                 }]
             }, {
-                group : 'view',
+                group : "view",
                 items : [{
-                    group : 'mail',
+                    group : "mail",
                     items : [{
-                        group : 'message',
+                        group : "message",
                         items : [{
-                            group : 'editor',
+                            group : "editor",
                             items : [
-                                'overrides/conjoon/cn_mail/view/mail/message/editor/MessageEditorViewControllerTest.js'
+                                "overrides/conjoon/cn_mail/view/mail/message/editor/MessageEditorViewControllerTest.js"
                             ]
                         }]
                     }]
@@ -100,12 +100,12 @@ harness.start({
         }]
     }]
 }, {
-    group : 'universal',
+    group : "universal",
     items : [
-        'src/UserProviderTest.js', {
-        group : 'app',
-        items : [
-            'src/app/PackageControllerTest.js'
-        ]
-    }]
+        "src/UserProviderTest.js", {
+            group : "app",
+            items : [
+                "src/app/PackageControllerTest.js"
+            ]
+        }]
 });

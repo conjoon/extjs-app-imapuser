@@ -26,50 +26,50 @@
 /**
  * @inheritdoc
  */
-Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthWindow', {
+Ext.define("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthWindow", {
 
-    override: 'coon.user.view.authentication.AuthWindow',
+    override: "coon.user.view.authentication.AuthWindow",
 
     header : false,
 
-    bodyCls: 'x-fa cn_user-authwindow',
+    bodyCls: "x-fa cn_user-authwindow",
 
 
     layout : {
-        type  : 'vbox',
-        align : 'stretch'
+        type  : "vbox",
+        align : "stretch"
     },
 
 
     /**
      * @inheritdoc
      */
-    initComponent : function() {
+    initComponent : function () {
 
         var me = this;
 
         me.items = [{
-            xtype  : 'container',
+            xtype  : "container",
             flex   : 1,
             layout : {
-                type  : 'vbox',
-                align : 'center',
-                pack  : 'center'
+                type  : "vbox",
+                align : "center",
+                pack  : "center"
             },
             items : [
                 me.items[0]
             ]
         }, {
-            xtype : 'box',
+            xtype : "box",
             height : 80,
-            cls   : 'copyrights',
-            html  : '<div class="cont">' +
-                '<div class="prod">conjoon</div>' +
-                '<div class="meta">' +
-                '<span><a target="_blank" href="http://conjoon.org">About</a></span>' +
-                '<span>&#169; 2007-2020 conjoon Open Source Project</span>' +
-                '</div>' +
-                '</div>'
+            cls   : "copyrights",
+            html  : "<div class=\"cont\">" +
+                "<div class=\"prod\">conjoon</div>" +
+                "<div class=\"meta\">" +
+                "<span><a target=\"_blank\" href=\"http://conjoon.org\">About</a></span>" +
+                "<span>&#169; 2007-2020 conjoon Open Source Project</span>" +
+                "</div>" +
+                "</div>"
         }];
 
         me.callParent(arguments);

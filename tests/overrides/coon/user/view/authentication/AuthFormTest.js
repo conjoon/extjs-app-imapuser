@@ -23,20 +23,19 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthFormTest', function(t) {
+describe("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthFormTest", function (t) {
 
 
-    t.requireOk('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm', function () {
+    t.requireOk("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", function () {
 
-        t.it("Should render AuthForm properly", function(t) {
+        t.it("Should render AuthForm properly", function (t) {
 
             const authForm = Ext.create("coon.user.view.authentication.AuthForm", {
                 renderTo : document.body
             });
 
 
-            t.expect(authForm.down('#cn_imapuser_rememberMe')).toBeTruthy()
-
+            t.expect(authForm.down("#cn_imapuser_rememberMe")).toBeTruthy();
 
 
         });

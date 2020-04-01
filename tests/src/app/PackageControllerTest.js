@@ -23,14 +23,14 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
+describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
 
 
-    t.it("constructor / config", function(t) {
+    t.it("constructor / config", function (t) {
 
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
-        t.isInstanceOf(ctrl, 'coon.user.app.PackageController');
+        t.isInstanceOf(ctrl, "coon.user.app.PackageController");
 
         t.expect(ctrl.getControl()).toEqual({
             "cn_navport-tbar #cn_imapuser-logoutBtn" : {
@@ -41,20 +41,20 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
     });
 
 
-    t.it("userWasNotAuthorized()", function(t) {
+    t.it("userWasNotAuthorized()", function (t) {
 
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         let SHOW = null;
 
         ctrl.authWindow = {
 
-            down : function() {
+            down : function () {
                 return {
-                    showAuthorizationFailed : function(v) {
+                    showAuthorizationFailed : function (v) {
                         SHOW = v;
                     }
-                }
+                };
             }
         };
 
@@ -71,58 +71,56 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
     });
 
 
-    t.it("init()", function(t) {
+    t.it("init()", function (t) {
 
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         t.expect(coon.user.Manager.getUserProvider() instanceof conjoon.cn_imapuser.UserProvider).toBe(false);
 
         ctrl.init();
 
-        t.isInstanceOf(coon.user.Manager.getUserProvider(), 'conjoon.cn_imapuser.UserProvider');
+        t.isInstanceOf(coon.user.Manager.getUserProvider(), "conjoon.cn_imapuser.UserProvider");
 
     });
 
 
-    t.it("userAvailable()", function(t) {
+    t.it("userAvailable()", function (t) {
 
         let COOKIES = {};
         const tmp = Ext.util.Cookies.set;
         const tmp2 = Ext.util.Cookies.clear;
 
-        Ext.util.Cookies.clear = function() {
+        Ext.util.Cookies.clear = function () {
             COOKIES = {};
-        }
-        Ext.util.Cookies.set = function(prop, val) {
+        };
+        Ext.util.Cookies.set = function (prop, val) {
             COOKIES[prop] = val;
-        }
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        };
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         let ID;
         let REMEMBERME = true;
         ctrl.authWindow = {
-            down : function(prop) {
+            down : function (prop) {
                 ID = prop;
 
                 return {
-                    getValue : function() {
+                    getValue : function () {
                         return REMEMBERME;
                     }
-                }
+                };
             }
         };
 
-        var INFO = {};
+        ctrl.callParent = function (args) {};
 
-        ctrl.callParent = function(args) {};
-
-        ctrl.userAvailable({get : function(prop) {return prop;}});
+        ctrl.userAvailable({get : function (prop) {return prop;}});
 
         t.expect(COOKIES).toEqual({"cn_imapuser-username" : "username", "cn_imapuser-password" : "password"});
         t.expect(ID).toBe("#cn_imapuser_rememberMe");
 
         REMEMBERME = false;
-        ctrl.userAvailable({get : function(prop) {return prop;}});
+        ctrl.userAvailable({get : function (prop) {return prop;}});
         t.expect(COOKIES).toEqual({});
 
         Ext.util.Cookies.set = tmp;
@@ -130,22 +128,22 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
     });
 
 
-    t.it("onUserLoadFailure()", function(t) {
+    t.it("onUserLoadFailure()", function (t) {
 
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         ctrl.authWindow = null;
 
         var CREATED = false;
 
-        ctrl.createAuthWindow = function() {
+        ctrl.createAuthWindow = function () {
             CREATED = true;
         };
-        ctrl.callParent = function() {};
+        ctrl.callParent = function () {};
         var CLEARED = [];
         var tmp = Ext.util.Cookies.clear;
-        Ext.util.Cookies.clear = function(cookieName) {
-            CLEARED.push(cookieName)
+        Ext.util.Cookies.clear = function (cookieName) {
+            CLEARED.push(cookieName);
         };
 
         ctrl.onUserLoadFailure();
@@ -154,46 +152,46 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
         t.expect(CLEARED).toEqual([
             "cn_imapuser-username",
             "cn_imapuser-password"
-        ])
+        ]);
 
         Ext.util.Cookies.clear = tmp;
     });
 
 
-    t.it("preLaunchHook()", function(t) {
+    t.it("preLaunchHook()", function (t) {
 
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         var tmp = Ext.util.Cookies.get;
 
-        Ext.util.Cookies.get = function(prop) {
+        Ext.util.Cookies.get = function (prop) {
             return prop;
-        }
+        };
 
         let USER = {};
-        coon.user.Manager.getUser = function() {
+        coon.user.Manager.getUser = function () {
             return USER;
-        }
+        };
 
         t.expect(ctrl.preLaunchHook()).toBe(true);
 
         USER = null;
         let OPTIONS = {};
-        coon.user.Manager.loadUser = function(options) {
+        coon.user.Manager.loadUser = function (options) {
             OPTIONS = options;
-        }
+        };
         t.expect(ctrl.preLaunchHook()).toBe(false);
         t.expect(OPTIONS.params.userid).toBe("cn_imapuser-username");
         t.expect(OPTIONS.params.password).toBe("cn_imapuser-password");
 
-        Ext.util.Cookies.get = function(prop) {
+        Ext.util.Cookies.get = function (prop) {
             return undefined;
-        }
+        };
 
         let CREATED = false;
-        ctrl.createAuthWindow = function() {
+        ctrl.createAuthWindow = function () {
             CREATED = true;
-        }
+        };
         t.expect(ctrl.preLaunchHook()).toBe(false);
         t.expect(CREATED).toBe(true);
 
@@ -201,24 +199,24 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
     });
 
 
-    t.it("setCookies() / getCookies()", function(t) {
+    t.it("setCookies() / getCookies()", function (t) {
 
         let COOKIES = {};
         const tmp = Ext.util.Cookies.set;
         const tmp2 = Ext.util.Cookies.clear;
 
-        Ext.util.Cookies.clear = function(name, path) {
+        Ext.util.Cookies.clear = function (name, path) {
             if (COOKIES[name] && COOKIES[name].path === path) {
                 delete COOKIES[name];
             }
         };
-        Ext.util.Cookies.set = function(prop, val, expires, path) {
+        Ext.util.Cookies.set = function (prop, val, expires, path) {
             COOKIES[prop] = {value : val, expires : expires, path : path};
         };
-        Ext.util.Cookies.get = function(prop) {
+        Ext.util.Cookies.get = function (prop) {
             return COOKIES[prop] ? COOKIES[prop].value : null;
         };
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         t.expect(ctrl.setCookies("a", "b")).toEqual({
             username : "a",
@@ -240,7 +238,6 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
         t.expect(COOKIES["cn_imapuser-password"].expires + "").toEqual((new Date(Date.now() + ((60 * 60 * 24) * 1000))) + "");
 
 
-
         t.expect(ctrl.setCookies(null)).toBe(null);
 
         t.expect(COOKIES["cn_imapuser-username"]).toBeUndefined();
@@ -257,12 +254,12 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
     });
 
 
-    t.it("postLaunchHook()", function(t) {
+    t.it("postLaunchHook()", function (t) {
 
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
-        let USER = {get:function(){return "foobar"}};
-        coon.user.Manager.getUser = function() {
+        let USER = {get:function (){return "foobar";}};
+        coon.user.Manager.getUser = function () {
             return USER;
         };
 
@@ -275,12 +272,12 @@ describe('conjoon.cn_imapuser.app.PackageControllerTest', function(t) {
     });
 
 
-    t.it("onLogoutButtonClick()", function(t){
+    t.it("onLogoutButtonClick()", function (t){
 
-        const ctrl = Ext.create('conjoon.cn_imapuser.app.PackageController');
+        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         let COOKIES = true;
-        ctrl.setCookies = function(val) {
+        ctrl.setCookies = function (val) {
             COOKIES = val;
         };
 
