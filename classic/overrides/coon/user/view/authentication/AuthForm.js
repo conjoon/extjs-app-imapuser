@@ -37,7 +37,7 @@ Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm
         var me = this;
 
         Ext.apply(me.items[0], {
-            cls    : 'x-fa fa-envelope badge head-label',
+            cls    : 'fas fa-envelope badge head-label',
             text   : undefined,
             margin : '-40 0 0 0'
         });
@@ -65,7 +65,6 @@ Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm
 
 
         Ext.apply(me.items[3], {
-            ui        : 'cn-btn-xl-soft-darkblue',
             scale     : 'large',
             iconAlign : 'right'
         });

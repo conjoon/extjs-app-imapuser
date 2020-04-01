@@ -26,14 +26,16 @@
 
 .cn_user-authform {
 
-  border        : 1px solid darken($lightest-color, 10%);
   border-radius : 6px;
-  background    : white;
+
+  .x-panel-body {
+    border-radius : 6px;
+  }
+
   overflow      : visible!important;
   @include cn-box-shadow(32px, 32px, 48px, 0, rgba(0,0,0,0.2));
 
   .x-panel-body-default {
-    background : none;
     overflow   : visible;
   }
 
@@ -59,7 +61,6 @@
       top       : 10px;
       left      : -18px;
       position  : relative;
-      color     : #e5e5e5;
       font-size : 30px;
     }
 
@@ -72,24 +73,18 @@
 
   }
 
-  /**
-   * Removes yellowish bg of autofill-fields in webkit browsers
-   */
-  input:-webkit-autofill{
-    box-shadow : 0 0 0px 1000px white inset;
-  }
 
   .head-label {
     &.badge {
-      background-color : $base-color;
+      background-color : var(--reverse-color);
       z-index          : 2;
       border-radius    : 36px;
       top              : -55px!important;
       left             : 144px!important;
-      border           : 7px double white;
+      border           : 7px double var(--base-color);
       width            : 70px!important;
       height           : 70px;
-      color            : white;
+      color            : var(--base-color);
       font-size        : 31px;
       line-height      : 52px;
       text-align       : center;

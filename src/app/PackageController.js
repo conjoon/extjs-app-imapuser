@@ -111,14 +111,21 @@ Ext.define('conjoon.cn_imapuser.app.PackageController', {
 
         permaNav.permaNav[0] = {
             xtype : 'button',
+            maxWidth : 200,
             text  : user.get('username'),
-            menu  : [{
+            menu  : {
+                listeners : {
+                    beforeshow : function (menu) {
+                        menu.setWidth(menu.up("button").getWidth());
+                    }
+                },
+                items : [{
                 /**
                  * @i18n
                  */
                 text : 'Logout',
                 itemId : 'cn_imapuser-logoutBtn'
-            }]
+            }]}
         };
 
         return permaNav;

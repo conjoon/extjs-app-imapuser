@@ -67,7 +67,7 @@ Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthWind
                 '<div class="prod">conjoon</div>' +
                 '<div class="meta">' +
                 '<span><a target="_blank" href="http://conjoon.org">About</a></span>' +
-                '<span>&#169; 2007-2019 conjoon Open Source Project</span>' +
+                '<span>&#169; 2007-2020 conjoon Open Source Project</span>' +
                 '</div>' +
                 '</div>'
         }];

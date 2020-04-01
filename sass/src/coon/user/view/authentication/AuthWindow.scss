@@ -25,11 +25,10 @@
 
 .cn_user-authwindow {
 
-    background : darken($lightest-color, 5%);
 
     .copyrights {
 
-        background : $color-soft-darkblue;
+        background : var(--color);
 
         .cont {
             padding    : 20px;
@@ -39,19 +38,19 @@
                 margin-left : 20px;
 
                 a {
-                    color : darken($lightest-color, 20%);
+                    color : var(--reverse-color);
                     &:visited {
-                        color : darken($lightest-color, 20%);
+                        color : var(--reverse-color);
                     }
                 }
             }
             .prod {
                 font-weight : bold;
-                color       : $lightest-color;
+                color       : var(--reverse-color);
             }
             .meta {
                 margin-top : 14px;
-                color      : darken($lightest-color, 50%);
+                color      : var(--reverse-color);
             }
 
         }
