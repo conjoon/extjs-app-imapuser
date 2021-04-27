@@ -45,16 +45,25 @@
   }
 
   .x-form-text-default {
-    padding : 15px;
+    padding : 10px;
   }
 
   .trigger-glyph-noop {
     cursor : default;
   }
+
+
   .x-form-trigger {
     text-align : right;
     width      : 50px;
   }
+
+  .x-form-invalid {
+    .x-form-trigger {
+      border-color:var(--alert-color);
+    }
+  }
+
   .auth-email-trigger,
   .auth-password-trigger {
     &:before {

@@ -28,7 +28,7 @@
 
     .copyrights {
 
-        background : var(--color);
+        background : var(--reverse-color);
 
         .cont {
             padding    : 20px;
@@ -38,19 +38,18 @@
                 margin-left : 20px;
 
                 a {
-                    color : var(--reverse-color);
                     &:visited {
-                        color : var(--reverse-color);
+                        color : var(--color);
                     }
                 }
             }
             .prod {
                 font-weight : bold;
-                color       : var(--reverse-color);
+                color       : var(--color);
             }
             .meta {
                 margin-top : 14px;
-                color      : var(--reverse-color);
+                color      : var(--color);
             }
 
         }

@@ -31,7 +31,7 @@
             "polyfills": "none"
         },
         "local": true,
-        "theme": "theme-cn_default",
+        "theme": "theme-cn_material",
         "sass" : {
             "namespace": "",
             "etc": [
