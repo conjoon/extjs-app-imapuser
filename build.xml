@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="app_cn_imapuser" default=".help">
+<project name="extjs-app-imapuser" default=".help">
 
     <script language="javascript">
         <![CDATA[

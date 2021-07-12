@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2017 - 2020 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -30,18 +30,18 @@
  */
 Ext.define("conjoon.cn_imapuser.app.PackageController", {
 
-    extend : "coon.user.app.PackageController",
+    extend: "coon.user.app.PackageController",
 
-    requires : [
+    requires: [
         "coon.user.Manager",
         "conjoon.cn_imapuser.UserProvider"
     ],
 
 
-    control : {
+    control: {
 
-        "cn_navport-tbar #cn_imapuser-logoutBtn" : {
-            click : "onLogoutButtonClick"
+        "cn_navport-tbar #cn_imapuser-logoutBtn": {
+            click: "onLogoutButtonClick"
         }
     },
 
@@ -49,7 +49,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
     /**
      * @inheritdoc
      */
-    init : function () {
+    init: function () {
 
         coon.user.Manager.setUserProvider(
             Ext.create("conjoon.cn_imapuser.UserProvider")
@@ -65,7 +65,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
      *
      *@inheritdoc
      */
-    preLaunchHook : function (app) {
+    preLaunchHook: function (app) {
 
         const me = this,
             cookies = me.getCookies(),
@@ -78,13 +78,13 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
 
         if (username && password) {
             coon.user.Manager.loadUser({
-                params  : {
-                    userid : username,
-                    password : password
+                params: {
+                    userid: username,
+                    password: password
                 },
-                success : me.onUserLoadSuccess,
-                failure : me.onUserLoadFailure,
-                scope   : me
+                success: me.onUserLoadSuccess,
+                failure: me.onUserLoadFailure,
+                scope: me
             });
 
             return false;
@@ -102,7 +102,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
     /**
      * @inheritdoc
      */
-    postLaunchHook : function () {
+    postLaunchHook: function () {
 
         const me = this,
             permaNav = me.callParent(arguments),
@@ -110,21 +110,21 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
 
 
         permaNav.permaNav[0] = {
-            xtype : "button",
-            maxWidth : 200,
-            text  : user.get("username"),
-            menu  : {
-                listeners : {
-                    beforeshow : function (menu) {
+            xtype: "button",
+            maxWidth: 200,
+            text: user.get("username"),
+            menu: {
+                listeners: {
+                    beforeshow: function (menu) {
                         menu.setWidth(menu.up("button").getWidth());
                     }
                 },
-                items : [{
+                items: [{
                 /**
                  * @i18n
                  */
-                    text : "Logout",
-                    itemId : "cn_imapuser-logoutBtn"
+                    text: "Logout",
+                    itemId: "cn_imapuser-logoutBtn"
                 }]}
         };
 
@@ -134,7 +134,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
     /**
      * @inheritdoc
      */
-    userAvailable : function (userModel) {
+    userAvailable: function (userModel) {
 
         const me = this;
 
@@ -153,7 +153,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
     /**
      * @inheritdoc
      */
-    userWasNotAuthorized : function () {
+    userWasNotAuthorized: function () {
 
         const me = this,
             authWindow = me.authWindow;
@@ -166,12 +166,12 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
     },
 
 
-    privates : {
+    privates: {
 
         /**
          * @inheritdoc
          */
-        onUserLoadFailure : function (options) {
+        onUserLoadFailure: function (options) {
             const me = this,
                 authWindow = me.authWindow;
 
@@ -190,7 +190,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
          *
          * @param btn
          */
-        onLogoutButtonClick : function (btn) {
+        onLogoutButtonClick: function (btn) {
 
             this.setCookies(null);
 
@@ -216,7 +216,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
          * @return null if cookies have been cleard, otherwise an object containing
          * username/password key-value pairs
          */
-        setCookies : function (username, password) {
+        setCookies: function (username, password) {
 
             if (arguments.length === 1 && username === null) {
                 Ext.util.Cookies.clear("cn_imapuser-username", "./");
@@ -231,8 +231,8 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
             Ext.util.Cookies.set("cn_imapuser-password", password, expires,  "./");
 
             return {
-                username : username,
-                password : password
+                username: username,
+                password: password
             };
         },
 
@@ -242,7 +242,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
          *
          * @return {{password: *, username: *}}
          */
-        getCookies : function () {
+        getCookies: function () {
 
             return {
                 username: Ext.util.Cookies.get("cn_imapuser-username"),

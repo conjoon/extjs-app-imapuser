@@ -1,3 +1,3 @@
-#app_cn_imapuser/licenses
+#extjs-app-imapuser/licenses
 
 This folder contains the supported licenses for third-party use.

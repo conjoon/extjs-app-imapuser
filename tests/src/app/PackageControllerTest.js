@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2017 - 2020 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -33,7 +33,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
         t.isInstanceOf(ctrl, "coon.user.app.PackageController");
 
         t.expect(ctrl.getControl()).toEqual({
-            "cn_navport-tbar #cn_imapuser-logoutBtn" : {
+            "cn_navport-tbar #cn_imapuser-logoutBtn": {
                 click: "onLogoutButtonClick"
             }
         });
@@ -49,9 +49,9 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
 
         ctrl.authWindow = {
 
-            down : function () {
+            down: function () {
                 return {
-                    showAuthorizationFailed : function (v) {
+                    showAuthorizationFailed: function (v) {
                         SHOW = v;
                     }
                 };
@@ -101,11 +101,11 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
         let ID;
         let REMEMBERME = true;
         ctrl.authWindow = {
-            down : function (prop) {
+            down: function (prop) {
                 ID = prop;
 
                 return {
-                    getValue : function () {
+                    getValue: function () {
                         return REMEMBERME;
                     }
                 };
@@ -114,13 +114,13 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
 
         ctrl.callParent = function (args) {};
 
-        ctrl.userAvailable({get : function (prop) {return prop;}});
+        ctrl.userAvailable({get: function (prop) {return prop;}});
 
-        t.expect(COOKIES).toEqual({"cn_imapuser-username" : "username", "cn_imapuser-password" : "password"});
+        t.expect(COOKIES).toEqual({"cn_imapuser-username": "username", "cn_imapuser-password": "password"});
         t.expect(ID).toBe("#cn_imapuser_rememberMe");
 
         REMEMBERME = false;
-        ctrl.userAvailable({get : function (prop) {return prop;}});
+        ctrl.userAvailable({get: function (prop) {return prop;}});
         t.expect(COOKIES).toEqual({});
 
         Ext.util.Cookies.set = tmp;
@@ -211,7 +211,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
             }
         };
         Ext.util.Cookies.set = function (prop, val, expires, path) {
-            COOKIES[prop] = {value : val, expires : expires, path : path};
+            COOKIES[prop] = {value: val, expires: expires, path: path};
         };
         Ext.util.Cookies.get = function (prop) {
             return COOKIES[prop] ? COOKIES[prop].value : null;
@@ -219,13 +219,13 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         t.expect(ctrl.setCookies("a", "b")).toEqual({
-            username : "a",
-            password : "b"
+            username: "a",
+            password: "b"
         });
 
         t.expect(ctrl.getCookies()).toEqual({
-            username : "a",
-            password : "b"
+            username: "a",
+            password: "b"
         });
 
 
@@ -244,8 +244,8 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
         t.expect(COOKIES["cn_imapuser-password"]).toBeUndefined();
 
         t.expect(ctrl.getCookies()).toEqual({
-            username : null,
-            password : null
+            username: null,
+            password: null
         });
 
 
@@ -258,7 +258,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
-        let USER = {get:function (){return "foobar";}};
+        let USER = {get: function (){return "foobar";}};
         coon.user.Manager.getUser = function () {
             return USER;
         };

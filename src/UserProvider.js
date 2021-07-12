@@ -1,7 +1,7 @@
 /**
  * coon.js
- * lib-cn_user
- * Copyright (C) 2017 - 2020 Thorsten Suckow-Homberg https://github.com/coon-js/lib-cn_user
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/coon-js/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
  */
 
 /**
- * UserProvider for app-cn_imapuser package.
+ * UserProvider for extjs-app-imapuser package.
  *
  * Authentication will use the url './cn_imapuser/auth' and POST a "username" and
  * a "password" property.
@@ -32,9 +32,9 @@
  */
 Ext.define("conjoon.cn_imapuser.UserProvider", {
 
-    extend : "coon.user.DefaultUserProvider",
+    extend: "coon.user.DefaultUserProvider",
 
-    requires : [
+    requires: [
         "coon.user.model.UserModel"
     ],
 
@@ -49,7 +49,7 @@ Ext.define("conjoon.cn_imapuser.UserProvider", {
      * @throws if options is not an object or if userid/password are missing in the object
      * as properties
      */
-    loadUser : function (options) {
+    loadUser: function (options) {
 
         const me = this;
 
@@ -57,25 +57,25 @@ Ext.define("conjoon.cn_imapuser.UserProvider", {
             !Object.prototype.hasOwnProperty.call(options,"userid") ||
             !Object.prototype.hasOwnProperty.call(options,"password")) {
             Ext.raise({
-                msg : "\"options\" must be an object with the properties \"userid\" and \"password\" defined",
-                options : options
+                msg: "\"options\" must be an object with the properties \"userid\" and \"password\" defined",
+                options: options
             });
         }
 
         me.isLoading = true;
 
         Ext.Ajax.request({
-            url : "./cn_imapuser/auth",
-            params : {
-                username : options.userid,
-                password : options.password
+            url: "./cn_imapuser/auth",
+            params: {
+                username: options.userid,
+                password: options.password
             },
-            method : "POST",
-            success : me.onUserLoad,
-            failure : function (response) {
+            method: "POST",
+            success: me.onUserLoad,
+            failure: function (response) {
                 me.onUserLoadFailure(response, options);
             },
-            scope : me
+            scope: me
         });
     },
 
@@ -85,7 +85,7 @@ Ext.define("conjoon.cn_imapuser.UserProvider", {
      *
      * @param {Object} response
      */
-    onUserLoad : function (response) {
+    onUserLoad: function (response) {
 
         const me = this,
             data = Ext.decode(response.responseText);
@@ -102,7 +102,7 @@ Ext.define("conjoon.cn_imapuser.UserProvider", {
      *
      * @param {Object} response
      */
-    onUserLoadFailure : function (response, options) {
+    onUserLoadFailure: function (response, options) {
 
         const me = this;
 

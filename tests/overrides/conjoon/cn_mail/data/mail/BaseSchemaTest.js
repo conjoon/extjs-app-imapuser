@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2017 - 2020 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -46,8 +46,8 @@ describe("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchemaTest
 
                 coon.user.Manager.getUser = function () {
                     return Ext.create("coon.user.model.UserModel", {
-                        username : "demo",
-                        password : "test"
+                        username: "demo",
+                        password: "test"
                     });
                 };
 

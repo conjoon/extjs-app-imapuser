@@ -1,3 +1,3 @@
-# app_cn_imapuser/sass/var
+# extjs-app-imapuser/sass/var
 
 This folder contains variable declaration files named by their component class.

@@ -1,4 +1,4 @@
-# app_cn_imapuser/sass/etc
+# extjs-app-imapuser/sass/etc
 
-This folder contains miscellaneous SASS files. Unlike `"app_cn_imapuser/sass/etc"`, these files
+This folder contains miscellaneous SASS files. Unlike `"extjs-app-imapuser/sass/etc"`, these files
 need to be used explicitly.

@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2017 - 2020 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -58,14 +58,14 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
 
 
             try {
-                provider.loadUser({userid : "dsd"});
+                provider.loadUser({userid: "dsd"});
             } catch(e) {exc = e;}
             t.expect(exc).toBeDefined();
             t.expect(exc.msg).toContain("must be an object with the properties");
             exc = undefined;
 
             try {
-                provider.loadUser({password : "dsd"});
+                provider.loadUser({password: "dsd"});
             } catch(e) {exc = e;}
             t.expect(exc).toBeDefined();
             t.expect(exc.msg).toContain("must be an object with the properties");
@@ -84,7 +84,7 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
             };
 
             t.expect(CALLED).toBe(null);
-            provider.loadUser({userid : "test", password : "test"});
+            provider.loadUser({userid: "test", password: "test"});
             t.waitForMs(250, function () {
                 t.expect(CALLED).toBe(1);
             });
@@ -96,7 +96,7 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
 
             const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
 
-            let CALLED = null, OPTIONS = {userid : "TESTFAIL", password : "test"};
+            let CALLED = null, OPTIONS = {userid: "TESTFAIL", password: "test"};
 
             provider.onUserLoadFailure = function (prov, opt) {
                 t.expect(opt).toBe(OPTIONS);
@@ -131,7 +131,7 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
                 CALLED = 1;
             });
 
-            provider.onUserLoad({responseText : Ext.encode({data:{username : "A", password : "B"}})});
+            provider.onUserLoad({responseText: Ext.encode({data: {username: "A", password: "B"}})});
 
             t.expect(CALLED).toBe(1);
             t.expect(provider.isLoading).toBe(false);
