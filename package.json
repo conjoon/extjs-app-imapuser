@@ -1,63 +1,124 @@
 {
-
-    "name": "app-cn_imapuser",
-
-    "sencha": {
-        "coon-js" : {"packageController" :  true},
-        "namespace": "conjoon.cn_imapuser",
-        "type": "code",
-        "toolkit": "classic",
-        "creator": "The conjoon Project - http://github.com/conjoon",
-        "summary": "Specialized version of a user authenticating against an IMAP server.",
-        "detailedDescription": "Specialized version of a user authenticating against an IMAP server.",
-        "version": "1.0.0",
-        "compatVersion": "1.0.0",
-        "format": "1",
-        "slicer": {
-            "js": [
-                {
-                    "path": "${package.dir}/sass/example/custom.js",
-                    "isWidgetManifest": true
-                }
-            ]
-        },
-        "output": {
-            "base" : "${package.dir}/build",
-            "js" : {
-                "version" : "ES6"
-            }
-        },
-        "compressor": {
-            "polyfills": "none"
-        },
-        "local": true,
-        "theme": "theme-cn_default",
-        "sass" : {
-            "namespace": "",
-            "etc": [
-                "${package.dir}/sass/etc/all.scss"
-            ],
-            "var": [
-                "${package.dir}/sass/var/"
-            ],
-            "src": [
-                "${package.dir}/sass/src/all.scss",
-                "${package.dir}/sass/src/"
-            ]
-        },
-        "classpath": [
-            "${package.dir}/src",
-            "${package.dir}/${toolkit.name}/src"
-        ],
-        "overrides": [
-            "${package.dir}/overrides",
-            "${package.dir}/${toolkit.name}/overrides"
-        ],
-        "example": null,
-        "framework" : "ext",
-        "requires": [
-            "lib-cn_user",
-            "app-cn_mail"
-        ]
-    }
+  "name": "@conjoon/extjs-app-imapuser",
+  "sencha": {
+    "name": "extjs-app-imapuser",
+    "coon-js": {
+      "package": {
+        "controller": true
+      }
+    },
+    "namespace": "conjoon.cn_imapuser",
+    "type": "code",
+    "toolkit": "classic",
+    "creator": "Thorsten Suckow-Homberg <thorsten@suckow-homberg.de>",
+    "summary": "Sencha ExtJS NPM package for authentication against IMAP servers.",
+    "version": "1.0.0",
+    "compatVersion": "1.0.0",
+    "format": "1",
+    "slicer": {
+      "js": [
+        {
+          "path": "${package.dir}/sass/example/custom.js",
+          "isWidgetManifest": true
+        }
+      ]
+    },
+    "output": {
+      "base": "${package.dir}/build",
+      "js": {
+        "version": "ES8"
+      }
+    },
+    "language": {
+      "js": {
+        "input": "ES8",
+        "output": "ES8"
+      }
+    },
+    "compressor": {
+      "type": "closure",
+      "polyfills": "none"
+    },
+    "local": true,
+    "theme": "extjs-theme-material",
+    "sass": {
+      "namespace": "",
+      "etc": [
+        "${package.dir}/sass/etc/all.scss"
+      ],
+      "var": [
+        "${package.dir}/sass/var/"
+      ],
+      "src": [
+        "${package.dir}/sass/src/all.scss",
+        "${package.dir}/sass/src/"
+      ]
+    },
+    "classpath": [
+      "${package.dir}/src",
+      "${package.dir}/${toolkit.name}/src"
+    ],
+    "overrides": [
+      "${package.dir}/overrides",
+      "${package.dir}/${toolkit.name}/overrides"
+    ],
+    "example": null,
+    "framework": "ext",
+    "requires": [
+      "extjs-app-user",
+      "extjs-app-webmail"
+    ]
+  },
+  "description": "Sencha ExtJS NPM package for authentication against IMAP servers.",
+  "version": "0.0.1",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build:dev": "npm run build:deps && npm run build:test && npx node-git-hooks",
+    "build:deps": "npm explore @coon-js/siesta-lib-helper npm run build:dev",
+    "build:test": "npx extjs-link && npx siesta-lib-helper",
+    "postversion": "git push && git push --tags",
+    "test": "npx ws --port 8094 --static.index tests.redirect.html --open"
+  },
+  "dependencies": {
+    "@conjoon/extjs-app-webmail": "^0.1.0",
+    "@coon-js/extjs-app-user": "^0.1.0",
+    "@l8js/l8": "^0.4.2"
+  },
+  "devDependencies": {
+    "@conjoon/extjs-dev-imapusersim": "^1.0.1",
+    "@coon-js/extjs-link": "^0.1.4",
+    "@coon-js/siesta-lib-helper": "^0.1.9",
+    "eslint": "^7.28.0",
+    "local-web-server": "^4.2.1",
+    "node-git-hooks": "^1.0.6",
+    "siesta-lite": "^5.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conjoon/extjs-app-imapuser.git"
+  },
+  "keywords": [
+    "webmail",
+    "imap",
+    "user",
+    "extjs",
+    "sencha",
+    "coon.js",
+    "l8",
+    "l8js",
+    "l8.js",
+    "coonjs",
+    "coon-js",
+    "javascript",
+    "webmail"
+  ],
+  "author": "Thorsten Suckow-Homberg <thorsten@suckow-homberg.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/conjoon/extjs-app-imapuser/issues"
+  },
+  "homepage": "https://github.com/conjoon/extjs-app-imapuser#readme"
 }

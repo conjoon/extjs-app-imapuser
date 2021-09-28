@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -26,50 +26,50 @@
 /**
  * @inheritdoc
  */
-Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthWindow', {
+Ext.define("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthWindow", {
 
-    override: 'coon.user.view.authentication.AuthWindow',
+    override: "coon.user.view.authentication.AuthWindow",
 
-    header : false,
+    header: false,
 
-    bodyCls: 'x-fa cn_user-authwindow',
+    bodyCls: "x-fa cn_user-authwindow",
 
 
-    layout : {
-        type  : 'vbox',
-        align : 'stretch'
+    layout: {
+        type: "vbox",
+        align: "stretch"
     },
 
 
     /**
      * @inheritdoc
      */
-    initComponent : function() {
+    initComponent: function () {
 
         var me = this;
 
         me.items = [{
-            xtype  : 'container',
-            flex   : 1,
-            layout : {
-                type  : 'vbox',
-                align : 'center',
-                pack  : 'center'
+            xtype: "container",
+            flex: 1,
+            layout: {
+                type: "vbox",
+                align: "center",
+                pack: "center"
             },
-            items : [
+            items: [
                 me.items[0]
             ]
         }, {
-            xtype : 'box',
-            height : 80,
-            cls   : 'copyrights',
-            html  : '<div class="cont">' +
-                '<div class="prod">conjoon</div>' +
-                '<div class="meta">' +
-                '<span><a target="_blank" href="http://conjoon.org">About</a></span>' +
-                '<span>&#169; 2007-2019 conjoon Open Source Project</span>' +
-                '</div>' +
-                '</div>'
+            xtype: "box",
+            height: 80,
+            cls: "copyrights",
+            html: "<div class=\"cont\">" +
+                "<div class=\"prod\">conjoon</div>" +
+                "<div class=\"meta\">" +
+                "<span><a target=\"_blank\" href=\"http://conjoon.org\">About</a></span>" +
+                "<span>&#169; 2007-2020 conjoon Open Source Project</span>" +
+                "</div>" +
+                "</div>"
         }];
 
         me.callParent(arguments);

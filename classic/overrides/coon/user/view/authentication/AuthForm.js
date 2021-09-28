@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,64 +27,63 @@
 /**
  * Custom styles for the AuthForm.
  */
-Ext.define('conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm', {
+Ext.define("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", {
 
-    override: 'coon.user.view.authentication.AuthForm',
+    override: "coon.user.view.authentication.AuthForm",
 
 
-    initComponent : function() {
+    initComponent: function () {
 
         var me = this;
 
         Ext.apply(me.items[0], {
-            cls    : 'x-fa fa-envelope badge head-label',
-            text   : undefined,
-            margin : '-40 0 0 0'
+            cls: "fas fa-envelope badge head-label",
+            text: undefined,
+            margin: "-40 0 0 0"
         });
 
         Ext.apply(me.items[1], {
-            height    : 55,
-            hideLabel : true,
-            triggers  : {
-                glyphed  : {
-                    cls : 'trigger-glyph-noop auth-email-trigger'
+            height: 55,
+            hideLabel: true,
+            triggers: {
+                glyphed: {
+                    cls: "trigger-glyph-noop auth-email-trigger"
                 }
             },
-            emptyText : 'email-address'
+            emptyText: "email-address"
         });
 
         Ext.apply(me.items[2], {
-            height    : 55,
-            hideLabel : true,
-            triggers  : {
-                glyphed  : {
-                    cls : 'trigger-glyph-noop auth-password-trigger'
+            height: 55,
+            hideLabel: true,
+            triggers: {
+                glyphed: {
+                    cls: "trigger-glyph-noop auth-password-trigger"
                 }
             }
         });
 
 
         Ext.apply(me.items[3], {
-            ui        : 'cn-btn-xl-soft-darkblue',
-            scale     : 'large',
-            iconAlign : 'right'
+            scale: "large",
+            iconAlign: "right"
         });
 
         Ext.apply(me.items[4], {
             /**
              * @i18n
              */
-            text : "Authentication against the list of valid IMAP servers failed. Please try again or use a different Email-Address."
+            text: "Authentication against the list of valid IMAP servers failed. Please try again or use a different Email-Address."
         });
 
         me.items.splice(4, 0, {
-            margin : '12 0 0 0',
-            itemId : 'cn_imapuser_rememberMe',
-            xtype : 'checkbox',
+            margin: "12 0 0 0",
+            itemId: "cn_imapuser_rememberMe",
+            xtype: "checkbox",
             /**
              * @i18n
              */
-            boxLabel  : 'Remember my login on this computer'
+            boxLabel: "Remember my login on this computer"
         });
 
 

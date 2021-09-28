@@ -23,24 +23,37 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthFormTest", function (t) {
+/**
+ * @inheritdoc
+ */
+Ext.define("conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController", {
 
+    override: "conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController",
 
-    t.requireOk("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", function () {
+    requires: [
+        "coon.user.Util",
+        "coon.user.Manager"
+    ],
 
-        t.it("Should render AuthForm properly", function (t) {
+    privates: {
 
-            const authForm = Ext.create("coon.user.view.authentication.AuthForm", {
-                renderTo: document.body
-            });
+        /**
+         * @inheritdoc
+         */
+        getSendMessageDraftRequestConfig: function (messageDraft) {
 
+            const me = this,
+                cfg = me.callParent(arguments);
 
-            t.expect(authForm.down("#cn_imapuser_rememberMe")).toBeTruthy();
+            cfg.headers = {
+                Authorization: "Basic " + coon.user.Util.userToCredentials(
+                    coon.user.Manager.getUser() , coon.user.Util.BASIC_AUTH
+                )
+            };
 
+            return cfg;
+        }
 
-        });
-
-
-    });
+    }
 
 });

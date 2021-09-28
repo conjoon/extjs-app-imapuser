@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -25,11 +25,10 @@
 
 .cn_user-authwindow {
 
-    background : darken($lightest-color, 5%);
 
     .copyrights {
 
-        background : $color-soft-darkblue;
+        background : var(--reverse-color);
 
         .cont {
             padding    : 20px;
@@ -39,19 +38,18 @@
                 margin-left : 20px;
 
                 a {
-                    color : darken($lightest-color, 20%);
                     &:visited {
-                        color : darken($lightest-color, 20%);
+                        color : var(--color);
                     }
                 }
             }
             .prod {
                 font-weight : bold;
-                color       : $lightest-color;
+                color       : var(--color);
             }
             .meta {
                 margin-top : 14px;
-                color      : darken($lightest-color, 50%);
+                color      : var(--color);
             }
 
         }

@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,56 +23,54 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe('conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchemaTest', function(t) {
+describe("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchemaTest", function (t) {
 
-    const getModels= function() {
+    const getModels= function () {
 
         return [
-            'conjoon.cn_mail.model.mail.account.MailAccount',
-            'conjoon.cn_mail.model.mail.folder.MailFolder',
-            'conjoon.cn_mail.model.mail.message.DraftAttachment',
-            'conjoon.cn_mail.model.mail.message.ItemAttachment',
-            'conjoon.cn_mail.model.mail.message.MessageBody',
-            'conjoon.cn_mail.model.mail.message.MessageDraft',
-            'conjoon.cn_mail.model.mail.message.MessageItem'
+            "conjoon.cn_mail.model.mail.account.MailAccount",
+            "conjoon.cn_mail.model.mail.folder.MailFolder",
+            "conjoon.cn_mail.model.mail.message.DraftAttachment",
+            "conjoon.cn_mail.model.mail.message.ItemAttachment",
+            "conjoon.cn_mail.model.mail.message.MessageBody",
+            "conjoon.cn_mail.model.mail.message.MessageDraft",
+            "conjoon.cn_mail.model.mail.message.MessageItem"
         ];
     };
 
-t.requireOk('coon.user.Manager', function() {
-t.requireOk('conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema', function() {
+    t.requireOk("coon.user.Manager", function () {
+        t.requireOk("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema", function () {
 
 
+            t.it("constructProxy()", function (t) {
 
-    t.it("constructProxy()", function(t) {
+                coon.user.Manager.getUser = function () {
+                    return Ext.create("coon.user.model.UserModel", {
+                        username: "demo",
+                        password: "test"
+                    });
+                };
 
-        coon.user.Manager.getUser = function() {
-            return Ext.create('coon.user.model.UserModel', {
-                username : 'demo',
-                password : 'test'
-            })
-        };
+                const schema = Ext.create("conjoon.cn_mail.data.mail.BaseSchema"),
+                    models = getModels();
 
-        const schema = Ext.create("conjoon.cn_mail.data.mail.BaseSchema"),
-              models = getModels();
+                let proxy, i, len;
 
-        let proxy, i, len;
+                for (i = 0, len = models.length; i < len; i++) {
 
-        for (i = 0, len = models.length; i < len; i++) {
+                    Ext.create(models[i]);
 
-            Ext.create(models[i]);
+                    proxy = schema.constructProxy(eval(models[i]));
 
-            proxy = schema.constructProxy(eval(models[i]))
+                    t.expect(proxy.headers).toBeDefined();
+                    t.expect(proxy.headers.Authorization).toBeDefined();
+                    t.expect(proxy.headers.Authorization).toBe(
+                        "Basic " + coon.user.Util.userToCredentials(coon.user.Manager.getUser(), coon.user.Util.BASIC_AUTH)
+                    );
+                }
+            });
 
-            t.expect(proxy.headers).toBeDefined();
-            t.expect(proxy.headers.Authorization).toBeDefined();
-            t.expect(proxy.headers.Authorization).toBe(
-                "Basic " + coon.user.Util.userToCredentials(coon.user.Manager.getUser(), coon.user.Util.BASIC_AUTH)
-            );
-        }
-    });
-
-});
-
+        });
 
 
-});});
+    });});

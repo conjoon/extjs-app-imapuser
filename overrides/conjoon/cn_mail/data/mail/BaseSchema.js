@@ -1,7 +1,7 @@
 /**
  * conjoon
- * app-cn_imapuser
- * Copyright (C) 2019 Thorsten Suckow-Homberg https://github.com/conjoon/app-cn_imapuser
+ * extjs-app-imapuser
+ * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -26,16 +26,16 @@
 /**
  * @inheritdoc
  */
-Ext.define('conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema', {
+Ext.define("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema", {
 
-    override: 'conjoon.cn_mail.data.mail.BaseSchema',
+    override: "conjoon.cn_mail.data.mail.BaseSchema",
 
-    requires : [
-        'coon.user.Util',
-        'coon.user.Manager'
+    requires: [
+        "coon.user.Util",
+        "coon.user.Manager"
     ],
 
-    privates : {
+    privates: {
 
         /**
          * @inheritdoc
@@ -43,11 +43,11 @@ Ext.define('conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema',
         constructProxy: function () {
 
             const me = this,
-                 proxy = me.callParent(arguments);
+                proxy = me.callParent(arguments);
 
 
             proxy.headers = {
-                Authorization : "Basic " + coon.user.Util.userToCredentials(
+                Authorization: "Basic " + coon.user.Util.userToCredentials(
                     coon.user.Manager.getUser() , coon.user.Util.BASIC_AUTH
                 )
             };
