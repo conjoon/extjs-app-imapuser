@@ -34,7 +34,9 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
 
     requires: [
         "coon.user.Manager",
-        "conjoon.cn_imapuser.UserProvider"
+        "conjoon.cn_imapuser.UserProvider",
+        // @extjs 7.4.0.42 seems to explicitely require Ext.util.Cookies
+        "Ext.util.Cookies"
     ],
 
 
