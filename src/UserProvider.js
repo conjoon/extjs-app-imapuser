@@ -26,8 +26,9 @@
 /**
  * UserProvider for extjs-app-imapuser package.
  *
- * Authentication will use the url './cn_imapuser/auth' and POST a "username" and
+ * Authentication will use the url `${baseAddress}/auth' of the rest-imapuser-service and POST a "username" and
  * a "password" property.
+ * For specifications related to rest-imapuser, see https://github.com/conjoon/rest-api-description.
  *
  */
 Ext.define("conjoon.cn_imapuser.UserProvider", {
@@ -37,6 +38,11 @@ Ext.define("conjoon.cn_imapuser.UserProvider", {
     requires: [
         "coon.user.model.UserModel"
     ],
+
+    /**
+     * The base address of the service the user provider should use for authentication.
+     * @cfg {String="./rest-imapuser"} baseAddress
+     */
 
 
     /**
@@ -65,7 +71,7 @@ Ext.define("conjoon.cn_imapuser.UserProvider", {
         me.isLoading = true;
 
         Ext.Ajax.request({
-            url: "./cn_imapuser/auth",
+            url: me.baseAddress ? me.baseAddress + "/auth" : "./rest-imapuser/auth",
             params: {
                 username: options.userid,
                 password: options.password

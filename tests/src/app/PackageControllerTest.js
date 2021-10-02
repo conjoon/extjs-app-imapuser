@@ -73,13 +73,33 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
 
     t.it("init()", function (t) {
 
-        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
+        let ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
         t.expect(coon.user.Manager.getUserProvider() instanceof conjoon.cn_imapuser.UserProvider).toBe(false);
 
-        ctrl.init();
+        ctrl.init({getPackageConfig: () => {}});
 
         t.isInstanceOf(coon.user.Manager.getUserProvider(), "conjoon.cn_imapuser.UserProvider");
+
+        t.expect(coon.user.Manager.getUserProvider().baseAddress).toBeUndefined();
+
+
+        ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
+        let scope = null,
+            path  = null,
+            baseAddress = "someserver";
+
+        ctrl.init({
+            getPackageConfig: (aScope, aPath) => {
+                path = aPath;
+                scope = aScope;
+                return scope === ctrl ? baseAddress : false;
+            }
+        });
+
+        t.expect(path).toBe("service.rest-imapuser.base");
+        t.expect(scope).toBe(ctrl);
+        t.expect(coon.user.Manager.getUserProvider().baseAddress).toBe(baseAddress);
 
     });
 

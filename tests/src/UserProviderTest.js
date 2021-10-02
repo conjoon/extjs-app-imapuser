@@ -73,6 +73,34 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
         });
 
 
+        t.it("loadUser() - no baseAddress", (t) => {
+
+            let spy = t.spyOn(Ext.Ajax, "request").and.callFake(() => {});
+            const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
+
+            t.expect(provider.baseAddress).toBeUndefined();
+            provider.loadUser({userid: "test", password: "test"});
+            t.expect(spy.calls.all()[0].args[0].url).toBe("./rest-imapuser/auth");
+
+            spy.remove();
+        });
+
+
+        t.it("loadUser() - baseAddress", (t) => {
+
+            let spy = t.spyOn(Ext.Ajax, "request").and.callFake(() => {}),
+                baseAddress = "https://localhost:8080/rest-imapuser/v1//";
+
+            const provider = Ext.create("conjoon.cn_imapuser.UserProvider", {baseAddress});
+
+            t.expect(provider.baseAddress).toBe(baseAddress);
+            provider.loadUser({userid: "test", password: "test"});
+            t.expect(spy.calls.all()[0].args[0].url).toBe(`${baseAddress}/auth`);
+
+            spy.remove();
+        });
+
+
         t.it("loadUser() - success", function (t) {
 
             const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
