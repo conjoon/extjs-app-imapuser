@@ -23,12 +23,12 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe("conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewControllerTest", function (t) {
+StartTest(t => {
 
 
-    t.requireOk("conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController", function () {
+    t.requireOk("conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController", () => {
 
-        t.it("getSendMessageDraftRequestConfig()", function (t) {
+        t.it("getSendMessageDraftRequestConfig()", (t) => {
 
             const ctrl = Ext.create("conjoon.cn_mail.view.mail.message.editor.MessageEditorViewController");
 

@@ -23,10 +23,10 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
+StartTest(t => {
 
 
-    t.it("constructor / config", function (t) {
+    t.it("constructor / config", (t) => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -41,7 +41,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
     });
 
 
-    t.it("userWasNotAuthorized()", function (t) {
+    t.it("userWasNotAuthorized()", (t) => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -71,7 +71,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
     });
 
 
-    t.it("init()", function (t) {
+    t.it("init()", (t) => {
 
         let ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -104,7 +104,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
     });
 
 
-    t.it("userAvailable()", function (t) {
+    t.it("userAvailable()", (t) => {
 
         let COOKIES = {};
         const tmp = Ext.util.Cookies.set;
@@ -148,7 +148,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
     });
 
 
-    t.it("onUserLoadFailure()", function (t) {
+    t.it("onUserLoadFailure()", (t) => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -178,7 +178,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
     });
 
 
-    t.it("preLaunchHook()", function (t) {
+    t.it("preLaunchHook()", (t) => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -219,7 +219,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
     });
 
 
-    t.it("setCookies() / getCookies()", function (t) {
+    t.it("setCookies() / getCookies()", (t) => {
 
         let COOKIES = {};
         const tmp = Ext.util.Cookies.set;
@@ -274,7 +274,7 @@ describe("conjoon.cn_imapuser.app.PackageControllerTest", function (t) {
     });
 
 
-    t.it("postLaunchHook()", function (t) {
+    t.it("postLaunchHook()", (t) => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 

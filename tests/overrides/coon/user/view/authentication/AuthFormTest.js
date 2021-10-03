@@ -23,12 +23,12 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthFormTest", function (t) {
+StartTest(t => {
 
 
-    t.requireOk("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", function () {
+    t.requireOk("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", () => {
 
-        t.it("Should render AuthForm properly", function (t) {
+        t.it("Should render AuthForm properly", (t) => {
 
             const authForm = Ext.create("coon.user.view.authentication.AuthForm", {
                 renderTo: document.body

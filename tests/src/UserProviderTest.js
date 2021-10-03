@@ -23,9 +23,9 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
+StartTest(t => {
 
-    t.requireOk("conjoon.dev.cn_imapusersim.app.PackageController", function () {
+    t.requireOk("conjoon.dev.cn_imapusersim.app.PackageController", () => {
 
         let simctrl;
 
@@ -49,7 +49,7 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
             simctrl = null;
         });
 
-        t.it("constructor", function (t) {
+        t.it("constructor", (t) => {
 
             const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
 
@@ -58,7 +58,7 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
         });
 
 
-        t.it("loadUser() - exception", function (t) {
+        t.it("loadUser() - exception", (t) => {
 
             const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
 
@@ -123,7 +123,7 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
         });
 
 
-        t.it("loadUser() - success", function (t) {
+        t.it("loadUser() - success", (t) => {
 
             const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
 
@@ -135,14 +135,14 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
 
             t.expect(CALLED).toBe(null);
             provider.loadUser({userid: "test", password: "test"});
-            t.waitForMs(250, function () {
+            t.waitForMs(t.parent.TIMEOUT, () => {
                 t.expect(CALLED).toBe(1);
             });
 
         });
 
 
-        t.it("loadUser() - failure", function (t) {
+        t.it("loadUser() - failure", (t) => {
 
             const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
 
@@ -155,14 +155,14 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
 
             t.expect(CALLED).toBe(null);
             provider.loadUser(OPTIONS);
-            t.waitForMs(250, function () {
+            t.waitForMs(t.parent.TIMEOUT, () => {
                 t.expect(CALLED).toBe(1);
             });
 
         });
 
 
-        t.it("onUserLoad()", function (t) {
+        t.it("onUserLoad()", (t) => {
 
             const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
 
@@ -188,7 +188,7 @@ describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
         });
 
 
-        t.it("onUserLoadFailure()", function (t) {
+        t.it("onUserLoadFailure()", (t) => {
 
             const provider = Ext.create("conjoon.cn_imapuser.UserProvider");
 
