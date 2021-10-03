@@ -23,7 +23,7 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-describe("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchemaTest", function (t) {
+StartTest(t => {
 
     const getModels= function () {
 
@@ -38,11 +38,11 @@ describe("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchemaTest
         ];
     };
 
-    t.requireOk("coon.user.Manager", function () {
-        t.requireOk("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema", function () {
+    t.requireOk("coon.user.Manager", () => {
+        t.requireOk("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.BaseSchema", () => {
 
 
-            t.it("constructProxy()", function (t) {
+            t.it("constructProxy()", (t) => {
 
                 coon.user.Manager.getUser = function () {
                     return Ext.create("coon.user.model.UserModel", {

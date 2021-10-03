@@ -51,10 +51,16 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
     /**
      * @inheritdoc
      */
-    init: function () {
+    init: function (app) {
+
+        const
+            me = this,
+            baseAddress = app.getPackageConfig(me, "service.rest-imapuser.base");
 
         coon.user.Manager.setUserProvider(
-            Ext.create("conjoon.cn_imapuser.UserProvider")
+            Ext.create("conjoon.cn_imapuser.UserProvider", {
+                baseAddress
+            })
         );
 
     },
