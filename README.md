@@ -19,20 +19,23 @@ npm test
 ## Usage
 When using this package without a backend implementation, make sure your app uses the [extjs-app-imapusersim](https://github.com/conjoon/extjs-app-imapusersim) package  of the [conjoon](https://github.com/conjoon) project.
 
-### Available API Implementations
-A simplistic RESTful PHP backend that can be used with single sign-ons to existing IMAP Servers can be found at [php-cn_imapuser](https://github.com/conjoon/php-cn_imapuser).
+### Required Services
+This package requires a service that complies with the REST API described in `rest-imapuser` which can be found 
+in the [REST API description](https://github.com/conjoon/rest-api-descriptions) of the conjoon project.
 
-### Required API
-Any developer striving for an own backend implementation should make sure to provide the following services:
+The url of this service can be configured in the configuration file for this package.
 
-* `cn_imapuser/auth` | **POST**
-    * **Parameters:**
-        * `{username}` (required): The username of the IMAP Account for which the user should be authenticated;
-        * `{password}` (required): The password of this user;
-    * Authenticates a user with the specified `username` and `password`. If successful, `extjs-app-imapuser` will make sure that the current user is a valid user for the lifetime of the application.
-    * Success Status / Response: Status 200 `{success :  true, data : {...}]` The response should return the user's data
-    * Failure Status / Response: Status 401 `{success : false}`
-
+```json
+{
+    "service": {
+        "rest-imapuser": {
+            "base" : "https://localhost/rest-imapuser/api/v1"
+        }
+    }
+} 
+```
+Please refer to the documentation of [extjs-lib-core](https://github.com/coon-js/extjs-lib-core) on how to 
+create package-specific configurations.
 
 ## Dev
 ### Naming

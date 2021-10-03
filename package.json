@@ -4,7 +4,15 @@
     "name": "extjs-app-imapuser",
     "coon-js": {
       "package": {
-        "controller": true
+
+        "controller": true,
+        "config": {
+          "service": {
+            "rest-imapuser" :  {
+              "base" : "https://php-ms-imapuser.ddev.site/rest-imapuser/api/v0.1/"
+            }
+          }
+        }
       }
     },
     "namespace": "conjoon.cn_imapuser",
@@ -70,7 +78,7 @@
     ]
   },
   "description": "Sencha ExtJS NPM package for authentication against IMAP servers.",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "main": "index.js",
   "directories": {
     "test": "tests"
