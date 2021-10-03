@@ -4,7 +4,6 @@
     "name": "extjs-app-imapuser",
     "coon-js": {
       "package": {
-
         "controller": true,
         "config": {
           "service": {
