@@ -25,7 +25,29 @@
 
 describe("conjoon.cn_imapuser.UserProviderTest", function (t) {
 
-    t.requireOk("conjoon.dev.cn_imapusersim.data.imapuser.PackageSim", function () {
+    t.requireOk("conjoon.dev.cn_imapusersim.app.PackageController", function () {
+
+        let simctrl;
+
+        t.beforeEach(() =>  {
+            simctrl = Ext.create("conjoon.dev.cn_imapusersim.app.PackageController");
+            simctrl.init({
+                getPackageConfig: () => ({
+                    url: "rest-imapuser/auth",
+                    enabled: true,
+                    delay: 1
+                })
+            });
+        });
+
+        t.afterEach(() =>  {
+            if (!simctrl) {
+                return;
+            }
+
+            simctrl.destroy();
+            simctrl = null;
+        });
 
         t.it("constructor", function (t) {
 
