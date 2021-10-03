@@ -73,7 +73,7 @@ Ext.define("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm
             /**
              * @i18n
              */
-            text: "Authentication against the list of valid IMAP servers failed. Please try again or use a different Email-Address."
+            text: "Authentication failed. We recommend you check your spelling and try again."
         });
 
         me.items.splice(4, 0, {
