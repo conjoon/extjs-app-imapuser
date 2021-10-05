@@ -59,7 +59,8 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
 
         coon.user.Manager.setUserProvider(
             Ext.create("conjoon.cn_imapuser.UserProvider", {
-                baseAddress
+                // fails to optimize when written as  Shorthand property name (ES2015): {baseAddress}
+                baseAddress: baseAddress
             })
         );
 
