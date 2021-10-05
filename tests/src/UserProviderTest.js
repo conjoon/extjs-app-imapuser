@@ -117,7 +117,7 @@ StartTest(t => {
 
             t.expect(provider.baseAddress).toBe(baseAddress);
             provider.loadUser({userid: "test", password: "test"});
-            t.expect(spy.calls.all()[0].args[0].url).toBe(`${baseAddress}/auth`);
+            t.expect(spy.calls.all()[0].args[0].url).toBe(l8.unify(`${baseAddress}/auth`, "/", "://"));
 
             spy.remove();
         });

@@ -87,7 +87,7 @@ StartTest(t => {
         ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
         let scope = null,
             path  = null,
-            baseAddress = "someserver";
+            baseAddress = "someserver//foo";
 
         ctrl.init({
             getPackageConfig: (aScope, aPath) => {
@@ -99,7 +99,7 @@ StartTest(t => {
 
         t.expect(path).toBe("service.rest-imapuser.base");
         t.expect(scope).toBe(ctrl);
-        t.expect(coon.user.Manager.getUserProvider().baseAddress).toBe(baseAddress);
+        t.expect(coon.user.Manager.getUserProvider().baseAddress).toBe(l8.unify(baseAddress, "/", "://"));
 
     });
 

@@ -33,6 +33,8 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
     extend: "coon.user.app.PackageController",
 
     requires: [
+        // @define
+        "l8",
         "coon.user.Manager",
         "conjoon.cn_imapuser.UserProvider",
         // @extjs 7.4.0.42 seems to explicitely require Ext.util.Cookies
@@ -60,7 +62,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
         coon.user.Manager.setUserProvider(
             Ext.create("conjoon.cn_imapuser.UserProvider", {
                 // fails to optimize when written as  Shorthand property name (ES2015): {baseAddress}
-                baseAddress: baseAddress
+                baseAddress: baseAddress ? l8.unify(baseAddress, "/", "://") : undefined
             })
         );
 

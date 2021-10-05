@@ -36,6 +36,8 @@ Ext.define("conjoon.cn_imapuser.UserProvider", {
     extend: "coon.user.DefaultUserProvider",
 
     requires: [
+        // @define
+        "l8",
         "coon.user.model.UserModel"
     ],
 
@@ -71,7 +73,7 @@ Ext.define("conjoon.cn_imapuser.UserProvider", {
         me.isLoading = true;
 
         Ext.Ajax.request({
-            url: me.baseAddress ? me.baseAddress + "/auth" : "./rest-imapuser/auth",
+            url: l8.unify(me.baseAddress ? me.baseAddress + "/auth" : "./rest-imapuser/auth", "/", "://"),
             params: {
                 username: options.userid,
                 password: options.password
