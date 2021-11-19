@@ -119,8 +119,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
             permaNav = me.callParent(arguments),
             user = coon.user.Manager.getUser();
 
-
-        permaNav.permaNav[0] = {
+        permaNav.permaNav.items[0] = {
             xtype: "button",
             maxWidth: 200,
             text: user.get("username"),
