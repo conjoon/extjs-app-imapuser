@@ -26,7 +26,7 @@
 StartTest(t => {
 
 
-    t.it("constructor / config", (t) => {
+    t.it("constructor / config", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -41,7 +41,7 @@ StartTest(t => {
     });
 
 
-    t.it("userWasNotAuthorized()", (t) => {
+    t.it("userWasNotAuthorized()", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -71,7 +71,7 @@ StartTest(t => {
     });
 
 
-    t.it("init()", (t) => {
+    t.it("init()", t => {
 
         let ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -104,7 +104,7 @@ StartTest(t => {
     });
 
 
-    t.it("userAvailable()", (t) => {
+    t.it("userAvailable()", t => {
 
         let COOKIES = {};
         const tmp = Ext.util.Cookies.set;
@@ -148,7 +148,7 @@ StartTest(t => {
     });
 
 
-    t.it("onUserLoadFailure()", (t) => {
+    t.it("onUserLoadFailure()", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -178,7 +178,7 @@ StartTest(t => {
     });
 
 
-    t.it("preLaunchHook()", (t) => {
+    t.it("preLaunchHook()", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -219,7 +219,7 @@ StartTest(t => {
     });
 
 
-    t.it("setCookies() / getCookies()", (t) => {
+    t.it("setCookies() / getCookies()", t => {
 
         let COOKIES = {};
         const tmp = Ext.util.Cookies.set;
@@ -274,7 +274,7 @@ StartTest(t => {
     });
 
 
-    t.it("postLaunchHook()", (t) => {
+    t.it("postLaunchHook()", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -286,8 +286,8 @@ StartTest(t => {
 
         let permaNav = ctrl.postLaunchHook();
 
-        t.expect(permaNav.permaNav[0].xtype).toBe("button");
-        t.expect(permaNav.permaNav[0].menu).toBeDefined();
+        t.expect(permaNav.permaNav.items[0].xtype).toBe("button");
+        t.expect(permaNav.permaNav.items[0].menu).toBeDefined();
 
     });
 
@@ -306,6 +306,6 @@ StartTest(t => {
         t.expect(COOKIES).toBe(null);
 
     });
-   
+
 
 });
