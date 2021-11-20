@@ -4,14 +4,10 @@
     "name": "extjs-app-imapuser",
     "coon-js": {
       "package": {
-        "controller": true,
-        "config": {
-          "service": {
-            "rest-imapuser" :  {
-              "base" : "https://php-ms-imapuser.ddev.site/rest-imapuser/api/v0/"
-            }
-          }
-        }
+        "autoLoad": {
+          "registerController":  true
+        },
+        "config": "${package.resourcePath}/extjs-app-imapuser.conf.json"
       }
     },
     "namespace": "conjoon.cn_imapuser",
