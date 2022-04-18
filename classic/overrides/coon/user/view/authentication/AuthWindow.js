@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -67,7 +67,7 @@ Ext.define("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthWind
                 "<div class=\"prod\">conjoon</div>" +
                 "<div class=\"meta\">" +
                 "<span><a target=\"_blank\" href=\"http://conjoon.org\">About</a></span>" +
-                "<span>&#169; 2007-2021 conjoon Open Source Project</span>" +
+                "<span>&#169; 2007-2022 conjoon Open Source Project</span>" +
                 "</div>" +
                 "</div>"
         }];
