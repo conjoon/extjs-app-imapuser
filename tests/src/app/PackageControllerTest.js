@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -75,9 +75,16 @@ StartTest(t => {
 
         let ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
+        const
+            fakeService = {},
+            providerSpy = t.spyOn(coon.core.ServiceProvider, "get").and.callFake(() => fakeService);
+
         t.expect(coon.user.Manager.getUserProvider() instanceof conjoon.cn_imapuser.UserProvider).toBe(false);
 
         ctrl.init({getPackageConfig: () => {}});
+
+        t.expect(providerSpy.calls.mostRecent().args[0]).toBe("coon.core.service.UserImageService");
+        t.expect(ctrl.userImageService).toBe(fakeService);
 
         t.isInstanceOf(coon.user.Manager.getUserProvider(), "conjoon.cn_imapuser.UserProvider");
 
@@ -101,6 +108,7 @@ StartTest(t => {
         t.expect(scope).toBe(ctrl);
         t.expect(coon.user.Manager.getUserProvider().baseAddress).toBe(l8.unify(baseAddress, "/", "://"));
 
+        [providerSpy].map(spy => spy.remove());
     });
 
 
@@ -276,19 +284,29 @@ StartTest(t => {
 
     t.it("postLaunchHook()", t => {
 
-        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
+        const
+            ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController"),
+            USERNAME = "user_name";
 
-        let USER = {get: function (){return "foobar";}};
+
+        let USER = {get: key => key === "username" ? USERNAME : "foobar"};
         coon.user.Manager.getUser = function () {
             return USER;
         };
 
+        ctrl.userImageService = {getImageSrc: function () {}};
+        let srcSpy = t.spyOn(ctrl.userImageService, "getImageSrc").and.callFake(() => "img_src");
 
         let permaNav = ctrl.postLaunchHook();
 
         t.expect(permaNav.permaNav.items[0].xtype).toBe("button");
         t.expect(permaNav.permaNav.items[0].menu).toBeDefined();
+        
+        t.expect(permaNav.permaNav.items[1].xtype).toBe("cn_user-toolbaruserimageitem");
+        t.expect(permaNav.permaNav.items[1].src).toBe("img_src");
+        t.expect(srcSpy.calls.mostRecent().args[0]).toBe(USERNAME);
 
+        [srcSpy].map(spy => spy.remove());
     });
 
 
