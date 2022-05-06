@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -38,9 +38,16 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
         "coon.user.Manager",
         "conjoon.cn_imapuser.UserProvider",
         // @extjs 7.4.0.42 seems to explicitely require Ext.util.Cookies
-        "Ext.util.Cookies"
+        "Ext.util.Cookies",
+        "coon.core.ServiceProvider"
     ],
 
+    /**
+     * UserImageService as returned by the ServiceProvider for showing the
+     * UserImage in the toolbar
+     * @type {coon.core.service.UserImageService} userImageService
+     * @private
+     */
 
     control: {
 
@@ -58,6 +65,8 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
         const
             me = this,
             baseAddress = app.getPackageConfig(me, "service.rest-imapuser.base");
+
+        me.userImageService = coon.core.ServiceProvider.get("coon.core.service.UserImageService");
 
         coon.user.Manager.setUserProvider(
             Ext.create("conjoon.cn_imapuser.UserProvider", {
@@ -138,6 +147,10 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
                 }]}
         };
 
+        permaNav.permaNav.items[1] = {
+            xtype: "cn_user-toolbaruserimageitem",
+            src: me.userImageService.getImageSrc(user.get("username"))
+        };
         return permaNav;
     },
 
