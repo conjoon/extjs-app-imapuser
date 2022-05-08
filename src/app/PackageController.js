@@ -96,6 +96,9 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
             return true;
         }
 
+        let title = app.getPackageConfig(me, "title");
+        title && Ext.fireEvent("conjoon.application.TitleAvailable", me, title);
+
         if (username && password) {
             coon.user.Manager.loadUser({
                 params: {
