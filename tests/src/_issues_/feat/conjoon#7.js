@@ -40,7 +40,7 @@ StartTest(t => {
         const
             ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController"),
             fakeCookies = {},
-            fakeApp = {getPackageConfig: function (){return FAKE_TITLE;}, activateViewForHash: () => {}},
+            fakeApp = {getPackageConfig: function (){return FAKE_TITLE;}},
             spy = t.spyOn(fakeApp, "getPackageConfig"),
             fireSpy = t.spyOn(Ext, "fireEvent");
 

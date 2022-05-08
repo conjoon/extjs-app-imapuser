@@ -190,6 +190,8 @@ StartTest(t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
+        const app = {getPackageConfig: () => ({})};
+
         var tmp = Ext.util.Cookies.get;
 
         Ext.util.Cookies.get = function (prop) {
@@ -201,14 +203,14 @@ StartTest(t => {
             return USER;
         };
 
-        t.expect(ctrl.preLaunchHook()).toBe(true);
+        t.expect(ctrl.preLaunchHook(app)).toBe(true);
 
         USER = null;
         let OPTIONS = {};
         coon.user.Manager.loadUser = function (options) {
             OPTIONS = options;
         };
-        t.expect(ctrl.preLaunchHook()).toBe(false);
+        t.expect(ctrl.preLaunchHook(app)).toBe(false);
         t.expect(OPTIONS.params.userid).toBe("cn_imapuser-username");
         t.expect(OPTIONS.params.password).toBe("cn_imapuser-password");
 
@@ -220,7 +222,7 @@ StartTest(t => {
         ctrl.createAuthWindow = function () {
             CREATED = true;
         };
-        t.expect(ctrl.preLaunchHook()).toBe(false);
+        t.expect(ctrl.preLaunchHook(app)).toBe(false);
         t.expect(CREATED).toBe(true);
 
         Ext.util.Cookies.get = tmp;
