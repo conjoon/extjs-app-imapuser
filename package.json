@@ -5,7 +5,7 @@
     "coon-js": {
       "package": {
         "autoLoad": {
-          "registerController":  true
+          "registerController": true
         },
         "config": "${package.resourcePath}/extjs-app-imapuser.conf.json"
       }
@@ -73,7 +73,7 @@
     ]
   },
   "description": "Sencha Ext JS NPM package for authentication against IMAP servers.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.js",
   "directories": {
     "test": "tests"
