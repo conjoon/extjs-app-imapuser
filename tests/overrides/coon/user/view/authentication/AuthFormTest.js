@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -26,21 +26,27 @@
 StartTest(t => {
 
 
-    t.requireOk("conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", () => {
+    t.requireOk(
+        "coon.core.Environment",
+        "conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", () => {
 
-        t.it("Should render AuthForm properly", (t) => {
+            let vendorBase = Ext.create("coon.core.env.VendorBase");
+            coon.core.Environment.setVendorBase(vendorBase);
+            coon.core.Environment.getPathForResource = () => ".";
 
-            const authForm = Ext.create("coon.user.view.authentication.AuthForm", {
-                renderTo: document.body
+            t.it("Should render AuthForm properly", (t) => {
+
+                const authForm = Ext.create("coon.user.view.authentication.AuthForm", {
+                    renderTo: document.body
+                });
+
+
+                t.expect(authForm.down("#cn_imapuser_rememberMe")).toBeTruthy();
+
+
             });
 
 
-            t.expect(authForm.down("#cn_imapuser_rememberMe")).toBeTruthy();
-
-
         });
-
-
-    });
 
 });

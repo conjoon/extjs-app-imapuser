@@ -2,7 +2,7 @@
     "title": "Login",
     "service": {
         "rest-imapuser" :  {
-            "base" : "https://php-ms-imapuser.ddev.site/rest-imapuser/api/v0/"
+            "base" : "https://ddev-ms-email.ddev.site/rest-imapuser/api/v0/"
         }
     }
 }

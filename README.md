@@ -2,12 +2,19 @@
 
 conjoon application module for providing user authentication against an imap server. 
 
+## About 
+This package supports [rest-api-email](https:://github.com/conjoon/rest-api-description) for authenticating
+a user against an IMAP server, where the sign-in crendentials for an IMAP-account are the login-information
+submitted via this package's login form.
+
+It is best suited for ISPs who wish to enable webmail services for their clients based on single account information.
+
 ## Installation
 ```bash
-$ npm install --save-dev @conjoon/extjs-app-imapuser
+$ npm i @conjoon/extjs-app-imapuser
 ```
 
-If you want to develop with this package, run the `build:dev`-script afterwards:
+If you want to develop with this package, run the `build:dev`-script:
 ```bash
 $ npm run build:dev
 ```
@@ -17,10 +24,8 @@ Testing environment will then be available via
 $ npm test
 ```
 
-For using the package as an external dependency in an application, use
-```bash
-$ npm install --save-prod @conjoon/extjs-app-imapuser
-```
+For using the package as an external dependency in an application:
+<br>
 In your `app.json`, add this package as a requirement, and make sure your ExtJS `workspace.json`
 is properly configured to look up local repositories in the `node_modules`-directory.
 
@@ -34,29 +39,31 @@ Example (`workspace.json`) :
 }
 ```
 
-## Configuration options
+Update the `app.json` of the application by specifying this package in the `uses`-property in
+either the `development` and/or `prodution` section:
 
-### Rest API
-- `service.rest-imapuser.base` - the base url to the [service](#required_services) providing endpoints for the [rest-imapuser](https://github.com/conjoon/rest-api-description)-API
-
-
-## Usage
-When using this package without a backend implementation, make sure your app uses the [extjs-app-imapusersim](https://github.com/conjoon/extjs-app-imapusersim) package  of the [conjoon](https://github.com/conjoon) project.
-
-### Required Services <a name="required_services"></a>
-This package requires a service that complies with the REST API described in `rest-imapuser` which can be found 
-in the [REST API description](https://github.com/conjoon/rest-api-description) of the **conjoon**-project.
-
-The url of this service can be configured in the configuration file for this package.
-
+*Example:*
 ```json
 {
-    "service": {
-        "rest-imapuser": {
-            "base" : "https://localhost/rest-imapuser/api/v1"
-        }
+    "development": {
+        "uses": [
+            "extjs-dev-imapusersim",
+            "extjs-app-imapuser",
+            "extjs-app-webmail",
+            "extjs-dev-webmailsim"
+        ]
+    },
+    "production": {
+        "uses": [
+            "extjs-app-imapuser",
+            "extjs-app-webmail"
+        ]
     }
-} 
+}
 ```
-Please refer to the documentation of [extjs-lib-core](https://github.com/coon-js/extjs-lib-core) on how to 
-create package-specific configurations.
+
+## Configuration and Usage
+For more information on how to configure and use the package, refer to the [documentation](./docs/README.md).
+
+## Tests
+Tests are written with [Siesta](https://bryntum.com/siesta). Documentation can be found [here](./tests/README.md).

@@ -77,7 +77,7 @@ StartTest(t => {
 
         const
             fakeService = {},
-            providerSpy = t.spyOn(coon.core.ServiceProvider, "get").and.callFake(() => fakeService);
+            providerSpy = t.spyOn(coon.core.ServiceLocator, "resolve").and.callFake(() => fakeService);
 
         t.expect(coon.user.Manager.getUserProvider() instanceof conjoon.cn_imapuser.UserProvider).toBe(false);
 

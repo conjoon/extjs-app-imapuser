@@ -39,11 +39,11 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
         "conjoon.cn_imapuser.UserProvider",
         // @extjs 7.4.0.42 seems to explicitely require Ext.util.Cookies
         "Ext.util.Cookies",
-        "coon.core.ServiceProvider"
+        "coon.core.ServiceLocator"
     ],
 
     /**
-     * UserImageService as returned by the ServiceProvider for showing the
+     * UserImageService as returned by the ServiceLocator for showing the
      * UserImage in the toolbar
      * @type {coon.core.service.UserImageService} userImageService
      * @private
@@ -66,7 +66,7 @@ Ext.define("conjoon.cn_imapuser.app.PackageController", {
             me = this,
             baseAddress = app.getPackageConfig(me, "service.rest-imapuser.base");
 
-        me.userImageService = coon.core.ServiceProvider.get("coon.core.service.UserImageService");
+        me.userImageService = coon.core.ServiceLocator.resolve("coon.core.service.UserImageService");
 
         coon.user.Manager.setUserProvider(
             Ext.create("conjoon.cn_imapuser.UserProvider", {
