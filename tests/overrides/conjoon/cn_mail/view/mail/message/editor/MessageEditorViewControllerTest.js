@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -39,18 +39,14 @@ StartTest(t => {
             coon.user.Manager.setUserProvider(provider);
 
             const messageDraft = Ext.create("conjoon.cn_mail.model.mail.message.MessageDraft", {
-                mailFolderId: 1,
-                mailAccountId: 1,
-                id: 1
+                mailAccountId: "dev",
+                mailFolderId: "INBOX",
+                id: 123
             });
 
-            t.expect(ctrl.getSendMessageDraftRequestConfig(messageDraft)).toEqual({
-                url: "./cn_mail/SendMessage",
-                params: {
-                    mailAccountId: "1",
-                    mailFolderId: "1",
-                    id: "1"
-                },
+            t.expect(ctrl.getSendMessageDraftRequestConfig(messageDraft, "./cn_mail")).toEqual({
+                url: "./cn_mail/MailAccounts/dev/MailFolders/INBOX/MessageItems/123",
+                method: "POST",
                 headers: {
                     Authorization: "Basic " + coon.user.Util.userToCredentials(provider.user, coon.user.Util.BASIC_AUTH)
                 }

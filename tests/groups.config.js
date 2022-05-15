@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -70,11 +70,20 @@ export default [{
     }]
 }, {
     group: "universal",
-    items: [
-        "src/UserProviderTest.js", {
-            group: "app",
-            items: [
-                "src/app/PackageControllerTest.js"
-            ]
+    items: [{
+        group: "_issues_",
+        items: [{
+            group: "feat",
+            items: [{
+                name: "conjoon/conjoon#7",
+                url: "src/_issues_/feat/conjoon%237.js"
+            }]
         }]
+    }, {
+        group: "app",
+        items: [
+            "src/app/PackageControllerTest.js"
+        ]
+    },
+    "src/UserProviderTest.js"]
 }];

@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -26,7 +26,7 @@
 StartTest(t => {
 
 
-    t.it("constructor / config", (t) => {
+    t.it("constructor / config", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -41,7 +41,7 @@ StartTest(t => {
     });
 
 
-    t.it("userWasNotAuthorized()", (t) => {
+    t.it("userWasNotAuthorized()", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -71,13 +71,20 @@ StartTest(t => {
     });
 
 
-    t.it("init()", (t) => {
+    t.it("init()", t => {
 
         let ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
+
+        const
+            fakeService = {},
+            providerSpy = t.spyOn(coon.core.ServiceLocator, "resolve").and.callFake(() => fakeService);
 
         t.expect(coon.user.Manager.getUserProvider() instanceof conjoon.cn_imapuser.UserProvider).toBe(false);
 
         ctrl.init({getPackageConfig: () => {}});
+
+        t.expect(providerSpy.calls.mostRecent().args[0]).toBe("coon.core.service.UserImageService");
+        t.expect(ctrl.userImageService).toBe(fakeService);
 
         t.isInstanceOf(coon.user.Manager.getUserProvider(), "conjoon.cn_imapuser.UserProvider");
 
@@ -101,10 +108,11 @@ StartTest(t => {
         t.expect(scope).toBe(ctrl);
         t.expect(coon.user.Manager.getUserProvider().baseAddress).toBe(l8.unify(baseAddress, "/", "://"));
 
+        [providerSpy].map(spy => spy.remove());
     });
 
 
-    t.it("userAvailable()", (t) => {
+    t.it("userAvailable()", t => {
 
         let COOKIES = {};
         const tmp = Ext.util.Cookies.set;
@@ -148,7 +156,7 @@ StartTest(t => {
     });
 
 
-    t.it("onUserLoadFailure()", (t) => {
+    t.it("onUserLoadFailure()", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
 
@@ -178,9 +186,11 @@ StartTest(t => {
     });
 
 
-    t.it("preLaunchHook()", (t) => {
+    t.it("preLaunchHook()", t => {
 
         const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
+
+        const app = {getPackageConfig: () => ({})};
 
         var tmp = Ext.util.Cookies.get;
 
@@ -193,14 +203,14 @@ StartTest(t => {
             return USER;
         };
 
-        t.expect(ctrl.preLaunchHook()).toBe(true);
+        t.expect(ctrl.preLaunchHook(app)).toBe(true);
 
         USER = null;
         let OPTIONS = {};
         coon.user.Manager.loadUser = function (options) {
             OPTIONS = options;
         };
-        t.expect(ctrl.preLaunchHook()).toBe(false);
+        t.expect(ctrl.preLaunchHook(app)).toBe(false);
         t.expect(OPTIONS.params.userid).toBe("cn_imapuser-username");
         t.expect(OPTIONS.params.password).toBe("cn_imapuser-password");
 
@@ -212,14 +222,14 @@ StartTest(t => {
         ctrl.createAuthWindow = function () {
             CREATED = true;
         };
-        t.expect(ctrl.preLaunchHook()).toBe(false);
+        t.expect(ctrl.preLaunchHook(app)).toBe(false);
         t.expect(CREATED).toBe(true);
 
         Ext.util.Cookies.get = tmp;
     });
 
 
-    t.it("setCookies() / getCookies()", (t) => {
+    t.it("setCookies() / getCookies()", t => {
 
         let COOKIES = {};
         const tmp = Ext.util.Cookies.set;
@@ -274,21 +284,31 @@ StartTest(t => {
     });
 
 
-    t.it("postLaunchHook()", (t) => {
+    t.it("postLaunchHook()", t => {
 
-        const ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController");
+        const
+            ctrl = Ext.create("conjoon.cn_imapuser.app.PackageController"),
+            USERNAME = "user_name";
 
-        let USER = {get: function (){return "foobar";}};
+
+        let USER = {get: key => key === "username" ? USERNAME : "foobar"};
         coon.user.Manager.getUser = function () {
             return USER;
         };
 
+        ctrl.userImageService = {getImageSrc: function () {}};
+        let srcSpy = t.spyOn(ctrl.userImageService, "getImageSrc").and.callFake(() => "img_src");
 
         let permaNav = ctrl.postLaunchHook();
 
-        t.expect(permaNav.permaNav[0].xtype).toBe("button");
-        t.expect(permaNav.permaNav[0].menu).toBeDefined();
+        t.expect(permaNav.permaNav.items[0].xtype).toBe("button");
+        t.expect(permaNav.permaNav.items[0].menu).toBeDefined();
+        
+        t.expect(permaNav.permaNav.items[1].xtype).toBe("cn_user-toolbaruserimageitem");
+        t.expect(permaNav.permaNav.items[1].src).toBe("img_src");
+        t.expect(srcSpy.calls.mostRecent().args[0]).toBe(USERNAME);
 
+        [srcSpy].map(spy => spy.remove());
     });
 
 
@@ -306,6 +326,6 @@ StartTest(t => {
         t.expect(COOKIES).toBe(null);
 
     });
-   
+
 
 });

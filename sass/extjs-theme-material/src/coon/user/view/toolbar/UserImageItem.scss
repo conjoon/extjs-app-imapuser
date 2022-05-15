@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2021 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,11 +27,23 @@
 .cn_user-toolbaruserimageitem {
   width         : 35px;
   height        : 35px;
-  border        : 1px solid var(--color);
-  padding-left  : 4px;
   color         : var(--color);
-  font-size     : 28px;
   border-radius : 20px;
-  line-height   : 38px;
   overflow      : hidden;
+  font-family   : $font-icon-font-family;
+  &:before {
+    content:"\f007" !important;
+    font-size: 35px;
+    line-height: 35px;
+    padding-left: 2px;
+  }
+
+  img {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    left: 0px;
+    top: 0px;
+  }
 }
