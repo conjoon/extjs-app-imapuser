@@ -31,9 +31,9 @@ jobs:
       - name: Build Ext JS & zip build
         run: |
           npm run build
-          mkdir ./build/zip 
+          mkdir ./build/zip && mkdir ./build/zip/extjs-app-imapuser
           cp ./build/deploy/* ./build/zip/extjs-app-imapuser -R
-          cd ./build/zip && &&  && zip -r ../../../release.zip ./extjs-app-imapuser
+          cd ./build/zip && zip -r ../../../release.zip ./extjs-app-imapuser
 
       - name: Create Release
         id: create_release
