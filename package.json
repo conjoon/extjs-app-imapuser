@@ -15,8 +15,8 @@
         "toolkit": "classic",
         "creator": "Thorsten Suckow-Homberg <thorsten@suckow-homberg.de>",
         "summary": "Sencha ExtJS NPM package for authentication against IMAP servers.",
-        "version": "0.1.2",
-        "compatVersion": "0.1.2",
+        "version": "1.0.0",
+        "compatVersion": "1.0.0",
         "format": "1",
         "slicer": {
             "js": [
@@ -73,11 +73,14 @@
     },
     "description": "Sencha Ext JS NPM package for authentication against IMAP servers.",
     "version": "0.1.2",
+    "type": "module",
     "main": "index.js",
     "directories": {
         "test": "tests"
     },
     "scripts": {
+        "bundle": "npx bundleme",
+        "build": "npx @sencha/cmd package build && npm run bundle",
         "build:dev": "npx node-git-hooks",
         "postversion": "git push && git push --tags",
         "test": "npm run test:siesta",
@@ -88,21 +91,24 @@
         "test:siesta": "npx ws --port 8069 --static.index tests.redirect.html --open"
     },
     "devDependencies": {
-        "@coon-js/extjs-app-user": "^0.1.7",
-        "@l8js/l8": "^0.7.2",
-        "@conjoon/extjs-app-webmail": "^0.3",
         "@commitlint/cli": "^13.2.0",
         "@commitlint/config-conventional": "^13.2.0",
+        "@conjoon/extjs-app-webmail": "^0.3",
         "@conjoon/extjs-dev-imapusersim": "^1.0.4",
         "@conjoon/extjs-theme-material": "^0.2.3",
+        "@coon-js/bundleme": "^0.3.0",
+        "@coon-js/extjs-app-user": "^0.1.7",
         "@coon-js/extjs-lib-comp": "^0.2.8",
         "@coon-js/extjs-lib-core": "^0.8.1",
         "@coon-js/extjs-link": "^0.1.10",
+        "@coon-js/extjs-package-loader": "^0.1.10",
         "@coon-js/siesta-lib-helper": "^0.1.16",
+        "@l8js/l8": "^0.7.4",
         "@sencha/cmd": "^7.6.0",
         "@sencha/ext": "^7.6.0",
         "@sencha/ext-classic": "^7.6.0",
         "@sencha/ext-classic-runtime": "^7.5.0",
+        "@sencha/ext-classic-theme-material": "^7.6.0",
         "@sencha/ext-core": "^7.6.0",
         "@sencha/ext-modern": "^7.6.0",
         "@sencha/ext-modern-runtime": "^7.5.0",
