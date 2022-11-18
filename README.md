@@ -18,7 +18,8 @@ If you want to develop with this package, run the `build:dev`-script:
 ```bash
 $ npm run build:dev
 ```
-Testing environment will then be available via
+Testing environment will be available via. Please refer to the [README](./tests/README.md) found in the test-folder
+for further information.
 
 ```bash
 $ npm test
