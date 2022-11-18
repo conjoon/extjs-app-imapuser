@@ -6,23 +6,27 @@ This package uses [Siesta](http://bryntum.com) for Unit-/UI-testing.
 
 tl;dr
 ```
-npm run setup:tests
-npm test
+npx create-siesta
+npm run test:siesta
 ```
 
 Explanation:
 
 Run
 ```
-npm run setup:tests
+npx create-siesta
 ```
+will install Siesta and the Sencha Ext JS Sources required for running the tests.
 in the NPM package. The tool will guide you through the process of symlinking to an existing ExtJS SDK installation
-(build files are required to properly run the tests in a Siesta-Browser environment). Once this is done, boilerplate-html
+Warning:
+Make a backup of your `./test` folder in case you accidentally let `create-siesta` override it.
+
+Once this is done, boilerplate-html
 files will be copied to the project (to: `./tests.redirect.html` and `./tests/index.extjs-browser.html`).
 
 After this was done, run
 ```
-npm test
+npm run test:siesta
 ```
 which will start a lightweight local webserver on **127.0.0.1**/**localhost**. This will also try
 automatically open your system's default web-browser and load the test main-page.
@@ -44,4 +48,3 @@ necessary to extend the duration of tests and test-setups.
 
   *Example-URL _(toolkit=classic with a timeout of 1000ms)*
   `http://127.0.0.1:8000/tests/index.html?toolkit=classic&timeout=1000`
-  
