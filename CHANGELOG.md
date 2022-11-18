@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/conjoon/extjs-app-imapuser/compare/v0.1.2...v0.1.3) (2022-11-18)
+
+
+### Features
+
+* **ci:** update ci/cd to create deployable release of package with conjoon ([d5dc6de](https://github.com/conjoon/extjs-app-imapuser/commit/d5dc6de6588212f0e62b7e174c628adf7bd8165c)), closes [conjoon/extjs-app-webmail#255](https://github.com/conjoon/extjs-app-webmail/issues/255)
+
 ### [0.1.2](https://github.com/conjoon/extjs-app-imapuser/compare/v0.1.1...v0.1.2) (2022-05-15)
 
 
