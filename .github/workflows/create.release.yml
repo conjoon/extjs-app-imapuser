@@ -31,6 +31,7 @@ jobs:
       - name: Build Ext JS & zip build
         run: |
           npm run build
+          mkdir ./build/zip 
           cp ./build/deploy/* ./build/zip/extjs-app-imapuser -R
           cd ./build/zip && &&  && zip -r ../../../release.zip ./extjs-app-imapuser
 
