@@ -48,22 +48,8 @@ export default [{
                 items: [{
                     group: "mail",
                     items: [
-                        "overrides/conjoon/cn_mail/data/mail/BaseSchemaTest.js"
+                        "overrides/conjoon/cn_mail/data/mail/account/proxy/MailAccountProxyTest.js"
                     ]
-                }]
-            }, {
-                group: "view",
-                items: [{
-                    group: "mail",
-                    items: [{
-                        group: "message",
-                        items: [{
-                            group: "editor",
-                            items: [
-                                "overrides/conjoon/cn_mail/view/mail/message/editor/MessageEditorViewControllerTest.js"
-                            ]
-                        }]
-                    }]
                 }]
             }]
         }]

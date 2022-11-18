@@ -87,12 +87,10 @@
         "release:major": "standard-version --release-as major && npm run postversion",
         "test:siesta": "npx ws --port 8069 --static.index tests.redirect.html --open"
     },
-    "dependencies": {
-        "@conjoon/extjs-app-webmail": "^0.2.0",
-        "@coon-js/extjs-app-user": "^0.1.7",
-        "@l8js/l8": "^0.7.2"
-    },
     "devDependencies": {
+        "@coon-js/extjs-app-user": "^0.1.7",
+        "@l8js/l8": "^0.7.2",
+        "@conjoon/extjs-app-webmail": "^0.3",
         "@commitlint/cli": "^13.2.0",
         "@commitlint/config-conventional": "^13.2.0",
         "@conjoon/extjs-dev-imapusersim": "^1.0.4",
