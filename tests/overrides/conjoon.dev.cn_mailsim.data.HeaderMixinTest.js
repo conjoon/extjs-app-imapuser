@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -27,25 +27,19 @@ StartTest(t => {
 
 
     t.requireOk(
-        "coon.core.Environment",
-        "conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", () => {
+        "conjoon.cn_imapuser.overrides.conjoon.dev.cn_mailsim.data.HeaderMixin",
+        "conjoon.dev.cn_mailsim.data.HeaderMixin", () => {
 
-            let vendorBase = Ext.create("coon.core.env.VendorBase");
-            coon.core.Environment.setVendorBase(vendorBase);
-            coon.core.Environment.getPathForResource = () => ".";
+            const makeMixin = () => Ext.create("conjoon.dev.cn_mailsim.data.HeaderMixin");
 
-            t.it("Should render AuthForm properly", (t) => {
-
-                const authForm = Ext.create("coon.user.view.authentication.AuthForm", {
-                    renderTo: document.body
-                });
-
-
-                t.expect(authForm.down("#cn_imapuser_rememberMe")).toBeTruthy();
-
-
+            t.it("checkHeader()", t => {
+                t.expect(makeMixin().checkHeader()).toBe(true);
             });
 
+
+            t.it("matchAccountInfoForCurrentRequest()", t => {
+                t.expect(makeMixin().matchAccountInfoForCurrentRequest()).toBe(true);
+            });
 
         });
 

@@ -23,30 +23,30 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export default [{
-    group: "overrides",
-    items: [
-        "overrides/coon.user.view.authentication.AuthFormTest.js",
-        "overrides/conjoon.cn_mail.data.mail.account.proxy.MailAccountProxyTest.js",
-        "overrides/conjoon.dev.cn_mailsim.data.HeaderMixinTest.js",
-        "overrides/conjoon.cn_mail.data.mail.HeaderMixinTest.js"
-    ]
-}, {
-    group: "universal",
-    items: [{
-        group: "_issues_",
-        items: [{
-            group: "feat",
-            items: [{
-                name: "conjoon/conjoon#7",
-                url: "src/_issues_/feat/conjoon%237.js"
-            }]
-        }]
-    }, {
-        group: "app",
-        items: [
-            "src/app/PackageControllerTest.js"
-        ]
-    },
-    "src/UserProviderTest.js"]
-}];
+StartTest(t => {
+
+
+    t.requireOk(
+        "coon.core.Environment",
+        "conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm", () => {
+
+            let vendorBase = Ext.create("coon.core.env.VendorBase");
+            coon.core.Environment.setVendorBase(vendorBase);
+            coon.core.Environment.getPathForResource = () => ".";
+
+            t.it("Should render AuthForm properly", (t) => {
+
+                const authForm = Ext.create("coon.user.view.authentication.AuthForm", {
+                    renderTo: document.body
+                });
+
+
+                t.expect(authForm.down("#cn_imapuser_rememberMe")).toBeTruthy();
+
+
+            });
+
+
+        });
+
+});

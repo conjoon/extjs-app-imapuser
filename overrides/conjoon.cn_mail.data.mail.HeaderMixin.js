@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,30 +23,35 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export default [{
-    group: "overrides",
-    items: [
-        "overrides/coon.user.view.authentication.AuthFormTest.js",
-        "overrides/conjoon.cn_mail.data.mail.account.proxy.MailAccountProxyTest.js",
-        "overrides/conjoon.dev.cn_mailsim.data.HeaderMixinTest.js",
-        "overrides/conjoon.cn_mail.data.mail.HeaderMixinTest.js"
-    ]
-}, {
-    group: "universal",
-    items: [{
-        group: "_issues_",
-        items: [{
-            group: "feat",
-            items: [{
-                name: "conjoon/conjoon#7",
-                url: "src/_issues_/feat/conjoon%237.js"
-            }]
-        }]
-    }, {
-        group: "app",
-        items: [
-            "src/app/PackageControllerTest.js"
-        ]
+/**
+ *
+ *
+ */
+Ext.define("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.HeaderMixin", {
+
+    override: "conjoon.cn_mail.data.mail.HeaderMixin",
+
+    getAdditionalHeaders (url, cfg) {
+        return {};
     },
-    "src/UserProviderTest.js"]
-}];
+
+
+    getConnectionHeaders (url) {
+        return {};
+    },
+
+    getAuthHeaders (url, type) {
+        return {};
+    },
+
+
+    /**
+     * @param url
+     * @returns {conjoon.cn_mail.model.mail.folder.MailFolder|null}
+     * @private
+     */
+    getAccountForUrl (url) {
+        throw new Error("Runtime Exception: getAccoutnUrl should not be called from extern.");
+    }
+
+});

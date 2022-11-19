@@ -32,11 +32,18 @@ export default {
 
     timeout: 750,
 
+
     loaderPath: {
 
         "conjoon.cn_imapuser": "../src",
 
-        "conjoon.cn_imapuser.overrides.conjoon": "../overrides/conjoon",
+        "conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm": "../classic/overrides/coon.user.view.authentication.AuthForm.js",
+        "conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.account.proxy.MailAccountProxy": "../overrides/conjoon.cn_mail.data.mail.account.proxy.MailAccountProxy.js",
+        "conjoon.cn_imapuser.overrides.conjoon.dev.cn_mailsim.data.HeaderMixin": "../overrides/conjoon.dev.cn_mailsim.data.HeaderMixin.js",
+        "conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.HeaderMixin": "../overrides/conjoon.cn_mail.data.mail.HeaderMixin.js",
+
+        "conjoon.cn_mail.data.mail.HeaderMixin": "../../node_modules/@conjoon/extjs-app-webmail/src/data/mail/HeaderMixin.js",
+        "conjoon.dev.cn_mailsim.data.HeaderMixin": "../../node_modules/@conjoon/extjs-dev-webmailsim/src/data/HeaderMixin.js",
 
         "coon.user.view.authentication.AuthWindow": "../../node_modules/@coon-js/extjs-app-user/src/view/authentication/AuthWindow.js",
 
