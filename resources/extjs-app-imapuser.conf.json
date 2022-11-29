@@ -1,5 +1,15 @@
 {
     "title": "Login",
+    "ioc": {
+        "bindings": {
+            "conjoon.dev.cn_mailsim": {
+                "conjoon.dev.cn_mailsim.data.SimletAdapter": "conjoon.cn_imapuser.dev.BasicAuthSimletAdapter"
+            },
+            "conjoon.cn_mail": {
+                "coon.core.data.request.Configurator": "conjoon.cn_imapuser.data.request.Configurator"
+            }
+        }
+    },
     "service": {
         "rest-imapuser" :  {
             "base" : "https://ddev-ms-email.ddev.site/rest-imapuser/api/v0/"
