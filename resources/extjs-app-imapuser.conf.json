@@ -2,11 +2,19 @@
     "title": "Login",
     "ioc": {
         "bindings": {
+            "$defs": {
+                "RequestConfiguratorSingleton": {
+                    "className": "conjoon.cn_imapuser.data.request.Configurator",
+                    "singleton": true
+                }
+            },
             "conjoon.dev.cn_mailsim": {
                 "conjoon.dev.cn_mailsim.data.SimletAdapter": "conjoon.cn_imapuser.dev.BasicAuthSimletAdapter"
             },
             "conjoon.cn_mail": {
-                "coon.core.data.request.Configurator": "conjoon.cn_imapuser.data.request.Configurator"
+                "coon.core.data.request.Configurator": {
+                    "$ref": "#/$defs/RequestConfiguratorSingleton"
+                }
             }
         }
     },
