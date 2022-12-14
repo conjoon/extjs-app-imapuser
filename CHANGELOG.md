@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/conjoon/extjs-app-imapuser/compare/v0.1.9...v0.2.0) (2022-12-14)
+
+
+### Features
+
+* add request.Configurator for configuring requests with Basic Auth headers ([3ab689e](https://github.com/conjoon/extjs-app-imapuser/commit/3ab689e2eda7cbd53cd51d17e4b6e10ec98177e9)), closes [conjoon/extjs-app-webmail#255](https://github.com/conjoon/extjs-app-webmail/issues/255)
+* add strategy for SimletAdapter for extjs-dev-webmailsim ([b5c68cd](https://github.com/conjoon/extjs-app-imapuser/commit/b5c68cd107e072d2f08eb2246f7029633a97992f)), closes [conjoon/extjs-app-webmail#255](https://github.com/conjoon/extjs-app-webmail/issues/255)
+
 ### [0.1.9](https://github.com/conjoon/extjs-app-imapuser/compare/v0.1.8...v0.1.9) (2022-11-18)
 
 ### [0.1.8](https://github.com/conjoon/extjs-app-imapuser/compare/v0.1.7...v0.1.8) (2022-11-18)
