@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/conjoon/extjs-app-imapuser/compare/v0.2.2...v0.2.3) (2022-12-14)
+
+
+### Bug Fixes
+
+* **deps:** remove local file-system deependency ([19cc3c8](https://github.com/conjoon/extjs-app-imapuser/commit/19cc3c8b38e4b6f9adc9743fab939f8f8beac0d8))
+
 ### [0.2.2](https://github.com/conjoon/extjs-app-imapuser/compare/v0.2.1...v0.2.2) (2022-12-14)
 
 ### [0.2.1](https://github.com/conjoon/extjs-app-imapuser/compare/v0.2.0...v0.2.1) (2022-12-14)
