@@ -24,38 +24,58 @@
  */
 
 /**
- * @inheritdoc
+ *
+ *
  */
-Ext.define("conjoon.cn_imapuser.overrides.conjoon.cn_mail.data.mail.account.proxy.MailAccountProxy", {
+Ext.define("conjoon.cn_imapuser.dev.BasicAuthSimletAdapter", {
 
-    override: "conjoon.cn_mail.data.mail.account.proxy.MailAccountProxy",
+    extend: "conjoon.dev.cn_mailsim.data.SimletAdapter",
 
-    requires: [
-        "coon.user.Util",
-        "coon.user.Manager"
-    ],
+    validateMailAccountId (mailAccountId) {
+        return true;
+    },
 
 
-    sendRequest (request) {
+    validateRequest (xhr) {
 
         const
             me = this,
-            url = new URL(request.getUrl()),
-            path = url.pathname;
+            headers = xhr.requestHeaders,
+            authorization = headers ? headers.Authorization : null;
 
-        if (path.endsWith("/MailAccounts")) {
-            request.setHeaders(
-                Object.assign(
-                    request.getHeaders()|| {},
-                    {
-                        Authorization: "Basic " + coon.user.Util.userToCredentials(
-                            coon.user.Manager.getUser() , coon.user.Util.BASIC_AUTH
-                        )
-                    }
-                )
-            );
+        if (!authorization) {
+            return me.make401(xhr);
         }
 
-        return me.callParent(arguments);
+        const method = authorization.split(" ");
+
+        if (method[0] !== "Basic" || !method[1]) {
+            return me.make401(xhr);
+        }
+
+        return null;
+    },
+
+
+    make400 (xhr) {
+        /* eslint-disable-next-line no-console*/
+        console.log(" --- Bad Request ", 400, xhr);
+        return {status: 400, success: false};
+    },
+
+
+    make401 (xhr) {
+        /* eslint-disable-next-line no-console*/
+        console.log(" --- Auth failed ", 401, xhr);
+        return {status: 401, success: false};
+    },
+
+
+    make403 (xhr) {
+        /* eslint-disable-next-line no-console*/
+        console.log(" --- Auth failed ", 403, xhr);
+        return {status: 401, success: false};
     }
+
+
 });

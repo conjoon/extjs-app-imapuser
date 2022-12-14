@@ -32,11 +32,12 @@ export default {
 
     timeout: 750,
 
+
     loaderPath: {
 
         "conjoon.cn_imapuser": "../src",
 
-        "conjoon.cn_imapuser.overrides.conjoon": "../overrides/conjoon",
+        "conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm": "../classic/overrides/coon.user.view.authentication.AuthForm.js",
 
         "coon.user.view.authentication.AuthWindow": "../../node_modules/@coon-js/extjs-app-user/src/view/authentication/AuthWindow.js",
 

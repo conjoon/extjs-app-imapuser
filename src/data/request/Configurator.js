@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,33 +23,40 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export default [{
-    group: "overrides",
-    items: [
-        "overrides/coon.user.view.authentication.AuthFormTest.js"
-    ]
-}, {
-    group: "universal",
-    items: [{
-        group: "_issues_",
-        items: [{
-            group: "feat",
-            items: [{
-                name: "conjoon/conjoon#7",
-                url: "src/_issues_/feat/conjoon%237.js"
-            }]
-        }]
-    }, {
-        group: "app",
-        items: [
-            "src/app/PackageControllerTest.js"
-        ]
-    }, {
-        group: "data",
-        items: [{
-            name: ".request.ConfiguratorTest.js",
-            url: "src/data/request/ConfiguratorTest.js"
-        }]
-    },
-    "src/UserProviderTest.js"]
-}];
+/**
+ * @inheritdoc
+ */
+Ext.define("conjoon.cn_imapuser.data.request.Configurator", {
+
+    extend: "coon.core.data.request.Configurator",
+
+    requires: [
+
+        // @define "l8"
+        "l8",
+        "coon.user.Util",
+        "coon.user.Manager",
+        "Ext.data.Request"
+    ],
+
+
+    configure (request) {
+
+        const
+            isDataRequest = request instanceof Ext.data.Request,
+            headers = (isDataRequest ? request.getHeaders() : request.headers) || {},
+            newHeaders = Object.assign(headers, {
+                Authorization: "Basic " + coon.user.Util.userToCredentials(
+                    coon.user.Manager.getUser() , coon.user.Util.BASIC_AUTH
+                )
+            });
+
+        if (isDataRequest) {
+            request.setHeaders(newHeaders);
+        } else {
+            request.headers = newHeaders;
+        }
+
+        return request;
+    }
+});
