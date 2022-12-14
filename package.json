@@ -86,20 +86,21 @@
         "postversion": "git push && git push --tags",
         "test": "npm run test:siesta",
         "release": "standard-version",
-        "release:patch": "standard-version --release-as patch && npm run postversion",
-        "release:minor": "standard-version --release-as minor && npm run postversion",
-        "release:major": "standard-version --release-as major && npm run postversion",
+        "preversion": "npx delorean -r",
+        "release:patch": "npm run preversion && standard-version --release-as patch && npm run postversion",
+        "release:minor": "npm run preversion && standard-version --release-as minor && npm run postversion",
+        "release:major": "npm run preversion && standard-version --release-as major && npm run postversion",
         "test:siesta": "npx ws --port 8069 --static.index tests.redirect.html --open"
     },
     "dependencies": {
-        "@coon-js/extjs-app-user": "^0.1.7",
-        "@coon-js/extjs-lib-comp": "^0.2.8",
-        "@coon-js/extjs-lib-core": "^1.0.0",
-        "@l8js/l8": "^0.8.0",
         "@conjoon/extjs-app-webmail": "^0.3",
         "@conjoon/extjs-dev-imapusersim": "^1.0.5",
         "@conjoon/extjs-dev-webmailsim": "^0.1.6",
-        "@conjoon/extjs-theme-material": "^0.3.1"
+        "@conjoon/extjs-theme-material": "^0.3.1",
+        "@coon-js/extjs-app-user": "^0.1.7",
+        "@coon-js/extjs-lib-comp": "^0.2.8",
+        "@coon-js/extjs-lib-core": "^1.0.1",
+        "@l8js/l8": "^0.8.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^13.2.0",
