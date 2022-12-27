@@ -42,12 +42,19 @@ Ext.define("conjoon.cn_imapuser.data.request.Configurator", {
 
     configure (request) {
 
+        if (!coon.user.Manager.getUser()) {
+            throw new Error(
+                "\"coon.user.Manager\" has no user configured. " +
+                "Check if the Configurator of the  \"extjs-app-imapuser\"-package is really needed for your instance."
+            );
+        }
+
         const
             isDataRequest = request instanceof Ext.data.Request,
             headers = (isDataRequest ? request.getHeaders() : request.headers) || {},
             newHeaders = Object.assign(headers, {
                 Authorization: "Basic " + coon.user.Util.userToCredentials(
-                    coon.user.Manager.getUser() , coon.user.Util.BASIC_AUTH
+                    coon.user.Manager.getUser(), coon.user.Util.BASIC_AUTH
                 )
             });
 
