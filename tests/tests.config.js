@@ -38,10 +38,13 @@ export default {
         "conjoon.cn_imapuser": "../src",
 
         "conjoon.cn_imapuser.overrides.coon.user.view.authentication.AuthForm": "../classic/overrides/coon.user.view.authentication.AuthForm.js",
+        "conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.account.MailAccountHandler": "../classic/overrides/conjoon.cn_mail.view.mail.account.MailAccountHandler.js",
 
         "coon.user.view.authentication.AuthWindow": "../../node_modules/@coon-js/extjs-app-user/src/view/authentication/AuthWindow.js",
 
         "conjoon.cn_mail": "../../node_modules/@conjoon/extjs-app-webmail/src/",
+        "conjoon.cn_mail.view.mail.account.MailAccountHandler": "../../node_modules/@conjoon/extjs-app-webmail/classic/src/view/mail/account/MailAccountHandler.js",
+        "conjoon.cn_mail.view.mail.account.MailAccountWizard": "../../node_modules/@conjoon/extjs-app-webmail/classic/src/view/mail/account/MailAccountWizard.js",
 
         "coon.user": "../../node_modules/@coon-js/extjs-app-user/src/",
         "coon.user.view": "../../node_modules/@coon-js/extjs-app-user/classic/src/view",

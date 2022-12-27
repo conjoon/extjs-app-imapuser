@@ -1,7 +1,7 @@
 /**
  * conjoon
  * extjs-app-imapuser
- * Copyright (C) 2017-2022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
+ * Copyright (C) 022 Thorsten Suckow-Homberg https://github.com/conjoon/extjs-app-imapuser
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,34 +23,17 @@
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export default [{
-    group: "overrides",
-    items: [
-        "overrides/coon.user.view.authentication.AuthFormTest.js",
-        "overrides/conjoon.cn_mail.view.mail.account.MailAccountHandlerTest.js"
-    ]
-}, {
-    group: "universal",
-    items: [{
-        group: "_issues_",
-        items: [{
-            group: "feat",
-            items: [{
-                name: "conjoon/conjoon#7",
-                url: "src/_issues_/feat/conjoon%237.js"
-            }]
-        }]
-    }, {
-        group: "app",
-        items: [
-            "src/app/PackageControllerTest.js"
-        ]
-    }, {
-        group: "data",
-        items: [{
-            name: ".request.ConfiguratorTest.js",
-            url: "src/data/request/ConfiguratorTest.js"
-        }]
-    },
-    "src/UserProviderTest.js"]
-}];
+
+/**
+ * Custom styles for the AuthForm.
+ */
+Ext.define("conjoon.cn_imapuser.overrides.conjoon.cn_mail.view.mail.account.MailAccountHandler", {
+
+    override: "conjoon.cn_mail.view.mail.account.MailAccountHandler",
+
+    enabled () {
+        return false;
+    }
+});
+
+
