@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/conjoon/extjs-app-imapuser/compare/v0.2.4...v1.0.0) (2023-01-29)
+
+
+### Features
+
+* extjs-app-imapuser disables default MailAccountHandler ([7d22811](https://github.com/conjoon/extjs-app-imapuser/commit/7d22811945e46782da6c660fd7a27cb1462c03bd)), closes [conjoon/conjoon#23](https://github.com/conjoon/conjoon/issues/23)
+
+
+### Bug Fixes
+
+* the RequestConfiguratorSingleton's class cannot be resolved ([be7f75e](https://github.com/conjoon/extjs-app-imapuser/commit/be7f75ed64c2ad1b6edd383f152ebb66e44e7292))
+
 ### [0.2.4](https://github.com/conjoon/extjs-app-imapuser/compare/v0.2.3...v0.2.4) (2022-12-14)
 
 ### [0.2.3](https://github.com/conjoon/extjs-app-imapuser/compare/v0.2.2...v0.2.3) (2022-12-14)
