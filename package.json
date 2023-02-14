@@ -73,7 +73,7 @@
         ]
     },
     "description": "Sencha Ext JS NPM package for authentication against IMAP servers.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "type": "module",
     "main": "index.js",
     "directories": {
