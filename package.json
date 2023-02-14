@@ -90,15 +90,16 @@
         "release:patch": "npm run preversion && standard-version --release-as patch && npm run postversion",
         "release:minor": "npm run preversion && standard-version --release-as minor && npm run postversion",
         "release:major": "npm run preversion && standard-version --release-as major && npm run postversion",
-        "test:siesta": "npx ws --port 8069 --static.index tests.redirect.html --open"
+        "test:siesta": "npx ws --port 8069 --static.index tests.redirect.html --open",
+        "deps:prod:latest": "npm i -P @coon-js/extjs-app-user@latest @conjoon/extjs-theme-material@latest @conjoon/extjs-dev-imapusersim@latest @conjoon/extjs-dev-webmailsim@latest @conjoon/extjs-app-webmail@latest  @coon-js/extjs-app-user@latest @coon-js/extjs-lib-comp@latest @coon-js/extjs-lib-core @l8js/l8@latest"
     },
     "dependencies": {
-        "@conjoon/extjs-app-webmail": "^1.0.1",
+        "@conjoon/extjs-app-webmail": "^1.0.8",
         "@conjoon/extjs-dev-imapusersim": "^1.0.5",
-        "@conjoon/extjs-dev-webmailsim": "^1.0.1",
+        "@conjoon/extjs-dev-webmailsim": "^1.0.2",
         "@conjoon/extjs-theme-material": "^0.3.1",
         "@coon-js/extjs-app-user": "^0.1.7",
-        "@coon-js/extjs-lib-comp": "^0.3.0",
+        "@coon-js/extjs-lib-comp": "^1.0.1",
         "@coon-js/extjs-lib-core": "^1.0.5",
         "@l8js/l8": "^0.10.1"
     },
