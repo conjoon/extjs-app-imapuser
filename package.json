@@ -104,7 +104,7 @@
         "@l8js/l8": "^0.10.1"
     },
     "devDependencies": {
-        "@commitlint/cli": "^13.2.0",
+        "@commitlint/cli": "^17.6.1",
         "@commitlint/config-conventional": "^13.2.0",
         "@coon-js/bundleme": "^0.3.1",
         "@coon-js/delorean": "^0.3.3",
